@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/personaje")
+      div.form-group
+        label nombre
+        input.form-control(name="nombre", type="text", placeholder="Texto")
+        label descripcion
+        input.form-control(name="descripcion", type="text", placeholder="Texto")
+        label habilidad
+        input.form-control(name="habilidad", type="text", placeholder="Texto")
+        label idOrigen
+        input.form-control(name="idOrigen", type="text", placeholder="ID")
+        label idClase
+        input.form-control(name="idClase", type="text", placeholder="ID")
+        br
+      div.form-group
+        label vida
+        input.form-control(name="vida", type="text", placeholder="Número")
+        label mana_inicial
+        input.form-control(name="mana_inicial", type="text", placeholder="Número")
+        label mana_max
+        input.form-control(name="mana_max", type="text", placeholder="Número")
+        label armadura
+        input.form-control(name="armadura", type="text", placeholder="Número")
+        label resistencia_magica
+        input.form-control(name="resistencia_magica", type="text", placeholder="Número")
+        label dano
+        input.form-control(name="dano", type="text", placeholder="Número")
+        label velocidad_ataque
+        input.form-control(name="velocidad_ataque", type="text", placeholder="Número")
+        br
+      div.form-group
+        label idCosto
+        input.form-control(name="idCosto", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

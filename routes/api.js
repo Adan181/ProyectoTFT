@@ -130,17 +130,16 @@ function router_init(db) {
 		});
 	});
 
-	router.post('/new/personaje', function(req, res) {
+	router.post('/new/personaje', function(req, res, next) {
 		if (err) throw err;
 		var vars = req.body;
-		var myobj = { idPersonaje: vars.idPersonaje, nombre: vars.nombre, 
-			descripcion: vars.descripcion, habilidad: vars.habilidad,
+		console.log(req.body);
+		var myobj = { nombre: vars.nombre, descripcion: vars.descripcion, habilidad: vars.habilidad,
 			idOrigen: vars.idOrigen, idClase: vars.idClase, 
 			estadistica: {vida: vars.vida, mana_inicial: vars.mana_inicial,
 			mana_max: vars.mana_max, armadura: vars.armadura,
 			resistencia_magica: vars.resistencia_magica, dano: vars.dano,
-			velocidad_ataque: vars.velocidad_ataque}, idCosto: vars.idCosto,
-			idObjeto: vars.idObjeto};
+			velocidad_ataque: vars.velocidad_ataque}, idCosto: vars.idCosto};
 		personaje_collection.insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 documento insertado (Personaje)");
