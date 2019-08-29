@@ -197,9 +197,7 @@ function router_init(db) {
 	router.post('/new/objeto', function(req, res) {
 		if (err) throw err;
 		var vars = req.body;
-		var myobj = { idObjeto: vars.idObjeto, stats: {vida: vars.vida, mana: vars.mana,
-			armadura: vars.armadura, resistencia_magica: vars.resistencia_magica, daño: vars. daño,
-			velocidad_ataque: vars.velocidad_ataque}, descripcion: vars.descripcion};
+		var myobj = { idObjeto: vars.idObjeto, tipostat: vars.tipostat,stat: vars.stat, descripcion: vars.descripcion};
 		objeto_collection.insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 documento insertado (Objeto)");
