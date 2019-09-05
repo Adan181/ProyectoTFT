@@ -131,78 +131,121 @@ function router_init(db) {
 	});
 
 	router.post('/new/personaje', function(req, res, next) {
-		if (err) throw err;
-		var vars = req.body;
-		console.log(req.body);
-		var myobj = { nombre: vars.nombre, descripcion: vars.descripcion, habilidad: vars.habilidad,
-			idOrigen: vars.idOrigen, idClase: vars.idClase, 
-			estadistica: {vida: vars.vida, mana_inicial: vars.mana_inicial,
-			mana_max: vars.mana_max, armadura: vars.armadura,
-			resistencia_magica: vars.resistencia_magica, dano: vars.dano,
-			velocidad_ataque: vars.velocidad_ataque}, idCosto: vars.idCosto};
-		personaje_collection.insertOne(myobj, function(err, res) {
-			if (err) throw err;
-			console.log("1 documento insertado (Personaje)");
-			db.close();
-		});
+		var nombre = req.body.nombre;
+		var descripcion = req.body.descripcion;
+		var habilidad = req.body.habilidad;
+		var idOrigen = req.body.idOrigen;
+		var idClase = req.body.idClase;
+		var vida = req.body.vida;
+		var manaInicial = req.body.manaInicial;
+		var manaMax = req.body.manaMax;
+		var armadura = req.body.armadura;
+		var resistenciaMagica = req.body.resistenciaMagica;
+		var dano = req.body.dano;
+		var velocidadAtaque = req.body.velocidadAtaque;
+		var idCosto = req.body.idCosto;
+		res.status(200).json(insertarPersonaje(nombre,descripcion,habilidad,
+			idOrigen,idClase,vida,manaInicial,manaMax,armadura,
+			resistenciaMagica,dano,velocidadAtaque,idCosto));
 	});
+
+	function insertarPersonaje(nomb,desc,habi,idOri,idCla,vid,manaI,manaM,arma,resi,dan,velo,idCos) {
+		var myobj = { nombre: nomb, descripcion: desc, habilidad: habi, idOrigen: idOri,
+			idClase: idCla, vida: vid, manaInicial: manaI, manaMax: manaM, armadura: arma,
+			resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, idCosto: idCos};
+		db.collection('personaje').insertOne(myobj, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted (Personaje)");
+		});
+		return myobj;
+	}
 
 	router.post('/new/minileyenda', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
-		var myobj = { idMini: vars.idMini, nombre: vars.nombre, tier: vars.tier};
-		minileyenda_collection.insertOne(myobj, function(err, res) {
-			if (err) throw err;
-			console.log("1 documento insertado (MiniLeyenda)");
-			db.close();
-		});
+		var nombre = req.body.nombre;
+		var idTier = req.body.idTier;
+		res.status(200).json(insertarMinileyenda(nombre,idTier));
 	});
+
+	function insertarMinileyenda(nomb,idT) {
+		var myobj = { nombre: nomb, idTier: idT};
+		db.collection('minileyenda').insertOne(myobj, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted (MiniLeyenda)");
+		});
+		return myobj;
+	}
 
 	router.post('/new/costo', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
-		var myobj = { probabilidad: vars.probabilidad, color: vars.color};
-		costo_collection.insertOne(myobj, function(err, res) {
-			if (err) throw err;
-			console.log("1 documento insertado (Costo)");
-			db.close();
-		});
+		var probabilidad = req.body.probabilidad;
+		var idColor = req.body.idColor;
+		res.status(200).json(insertarCosto(probabilidad,idColor));
 	});
 
-	router.post('/new/clase', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
+	function insertarCosto(prob,idC) {
+		var myobj = { probabilidad: prob, idColor: idC};
+		db.collection('costo').insertOne(myobj, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted (Costo)");
+		});
+		return myobj;
+	}
+
+	router.post('/new/clase', function(req, res) {		
+		var idClase = req.body.idClase;
+		var nombre = req.body.nombre;
+		var efecto = req.body.efecto;
+		var cantidad = req.body.cantidad;
+		res.status(200).json(insertarClase(idClase,nombre,efecto, cantidad));	
+	});
+
+	function insertarClase(idClase,nombre,efecto,cantidad) {
 		var myobj = { idClase: vars.idClase, nombre: vars.nombre, efecto: vars.efecto, 
 			cantidad: vars.cantidad};
-		clase_collection.insertOne(myobj, function(err, res) {
+		db.collection('clase').insertOne(myobj, function(err, res) {
 			if (err) throw err;
-			console.log("1 documento insertado (Clase)");
-			db.close();
+			console.log("1 document inserted (Clase)");
 		});
+		return myobj;
+	}
+
+
+	router.post('/new/origen', function(req, res) {		
+		var idOrigen = req.body.idOrigen;
+		var nombre = req.body.nombre;
+		var efecto = req.body.efecto;
+		var cantidad = req.body.cantidad;
+		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto, cantidad));
+
 	});
 
-	router.post('/new/origen', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
-		var myobj = { idOrigen: vars.idOrigen, nombre: vars.nombre, efecto: vars.efecto,
+	function insertarOrigen(idOrigen,nombre,efecto,cantidad) {
+		var myobj = { idOrigen: vars.idOrigen, nombre: vars.nombre, efecto: vars.efecto, 
 			cantidad: vars.cantidad};
-		origen_collection.insertOne(myobj, function(err, res) {
+		db.collection('origen').insertOne(myobj, function(err, res) {
 			if (err) throw err;
-			console.log("1 documento insertado (Origen)");
-			db.close();
+			console.log("1 document inserted (Origen)");
 		});
+		return myobj;
+	}	
+
+	router.post('/new/objeto', function(req, res) {		
+		var idObjeto = req.body.idObjeto;
+		var idStat = req.body.idStat;
+		var stat = req.body.stat;
+		var descripcion = req.body.descripcion;
+		res.status(200).json(insertarObjeto(idObjeto,idStat,stat, descripcion));
+	
 	});
 
-	router.post('/new/objeto', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
-		var myobj = { idObjeto: vars.idObjeto, tipostat: vars.tipostat,stat: vars.stat, descripcion: vars.descripcion};
-		objeto_collection.insertOne(myobj, function(err, res) {
+	function insertarObjeto(idObjeto,tipostat,stat,descripcion) {
+		var myobj = { idObjeto: vars.idObjeto, idStat: vars.idStat, stat: vars.stat, 
+			descripcion: vars.descripcion};
+		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
-			console.log("1 documento insertado (Objeto)");
-			db.close();
+			console.log("1 document inserted (Objeto)");
 		});
-	});
+		return myobj;
+	}	
 
 	router.post('/new/objetofinal', function(req, res) {
 		if (err) throw err;
@@ -215,8 +258,18 @@ function router_init(db) {
 			if (err) throw err;
 			console.log("1 documento insertado (ObjetoFinal)");
 			db.close();
-		});
 	});
+
+	function insertarObjetoFinal(idObjetoFinal,tipostat,stat,descripcion) {
+		var myobj = { idObjeto: vars.idObjeto, idStat: vars.idStat, stat: vars.stat, 
+			descripcion: vars.descripcion};
+		db.collection('objeto').insertOne(myobj, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted (Objeto)");
+		});
+		return myobj;
+	}	
+	
 
 	return router;
 }

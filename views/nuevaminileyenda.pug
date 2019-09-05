@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/minileyenda")
+      div.form-group
+        label nombre
+        input.form-control(name="nombre", type="text", placeholder="Texto")
+        label idTier
+        input.form-control(name="idTier", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

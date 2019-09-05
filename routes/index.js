@@ -10,5 +10,8 @@ router.get('/nuevopersonaje', function(req, res, next) {
   res.render('nuevopersonaje');
 });
 
+router.get('/nuevaminleyenda', function(req, res, next) {
+  res.render('nuevaminleyenda');
+});
 
 module.exports = router;

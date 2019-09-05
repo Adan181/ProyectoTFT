@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/minileyenda")
+      div.form-group
+        label probabilidad
+        input.form-control(name="probabilidad", type="text", placeholder="Número")
+        label idColor
+        input.form-control(name="idColor", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar
