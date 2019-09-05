@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/objetofinal")
+      div.form-group
+        label idObjetoFinal
+        input.form-control(name="idObjeto", type="text", placeholder="ID")
+        label idObjeto1
+        input.form-control(name="idStat", type="text", placeholder="ID")
+        label idObjeto2
+        input.form-control(name="idStat", type="text", placeholder="ID")
+        label vida
+        input.form-control(name="stat", type="text", placeholder="Número")
+        label mana
+        input.form-control(name="descripcion", type="text", placeholder="Número")
+        label armadura
+        input.form-control(name="stat", type="text", placeholder="Número")
+        label resistenciaMagica
+        input.form-control(name="descripcion", type="text", placeholder="Número")
+        label dano
+        input.form-control(name="stat", type="text", placeholder="Número")
+        label velocidadAtaque
+        input.form-control(name="descripcion", type="text", placeholder="Número")
+        label efecto
+        input.form-control(name="descripcion", type="text", placeholder="Texto")
+      button.btn.btn-primary Aceptar

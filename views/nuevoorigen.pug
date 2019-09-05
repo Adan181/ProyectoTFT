@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/origen")
+      div.form-group
+        label idOrigen
+        input.form-control(name="idOrigen", type="text", placeholder="ID")
+        label nombre
+        input.form-control(name="nombre", type="text", placeholder="Texto")
+        label efecto
+        input.form-control(name="efecto", type="text", placeholder="Texto")
+        label cantidad
+        input.form-control(name="cantidad", type="text", placeholder="Texto")
+      button.btn.btn-primary Aceptar

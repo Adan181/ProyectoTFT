@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    form(method="POST", action="api/new/clase")
+      div.form-group
+        label idClase
+        input.form-control(name="idClase", type="text", placeholder="ID")
+        label nombre
+        input.form-control(name="nombre", type="text", placeholder="Texto")
+        label efecto
+        input.form-control(name="efecto", type="text", placeholder="Texto")
+        label cantidad
+        input.form-control(name="cantidad", type="text", placeholder="Texto")
+      button.btn.btn-primary Aceptar

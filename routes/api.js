@@ -195,12 +195,12 @@ function router_init(db) {
 		var nombre = req.body.nombre;
 		var efecto = req.body.efecto;
 		var cantidad = req.body.cantidad;
-		res.status(200).json(insertarClase(idClase,nombre,efecto, cantidad));	
+		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad));	
 	});
 
-	function insertarClase(idClase,nombre,efecto,cantidad) {
-		var myobj = { idClase: vars.idClase, nombre: vars.nombre, efecto: vars.efecto, 
-			cantidad: vars.cantidad};
+	function insertarClase(idC,nomb,efect,canti) {
+		var myobj = { idClase: idC, nombre: nomb, efecto: efect, 
+			cantidad: canti};
 		db.collection('clase').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Clase)");
@@ -214,13 +214,13 @@ function router_init(db) {
 		var nombre = req.body.nombre;
 		var efecto = req.body.efecto;
 		var cantidad = req.body.cantidad;
-		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto, cantidad));
+		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto,cantidad));
 
 	});
 
-	function insertarOrigen(idOrigen,nombre,efecto,cantidad) {
-		var myobj = { idOrigen: vars.idOrigen, nombre: vars.nombre, efecto: vars.efecto, 
-			cantidad: vars.cantidad};
+	function insertarOrigen(idO,nomb,efect,canti) {
+		var myobj = { idOrigen: idO, nombre: nomb, efecto: efect, 
+			cantidad: canti};
 		db.collection('origen').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Origen)");
@@ -233,13 +233,13 @@ function router_init(db) {
 		var idStat = req.body.idStat;
 		var stat = req.body.stat;
 		var descripcion = req.body.descripcion;
-		res.status(200).json(insertarObjeto(idObjeto,idStat,stat, descripcion));
+		res.status(200).json(insertarObjeto(idObjeto,idStat,stat,descripcion));
 	
 	});
 
-	function insertarObjeto(idObjeto,tipostat,stat,descripcion) {
-		var myobj = { idObjeto: vars.idObjeto, idStat: vars.idStat, stat: vars.stat, 
-			descripcion: vars.descripcion};
+	function insertarObjeto(idO,idS,sta,desc) {
+		var myobj = { idObjeto: idO, idStat: idS, stat: sta, 
+			descripcion: desc};
 		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Objeto)");
@@ -248,24 +248,27 @@ function router_init(db) {
 	}	
 
 	router.post('/new/objetofinal', function(req, res) {
-		if (err) throw err;
-		var vars = req.body;
-		var myobj = { idObjetoFinal: vars.idObjetoFinal,
-			objetosCombinados: {objeto1: vars.objeto1, objeto2: vars.objeto2},stats: {vida: vars.vida, mana: vars.mana,
-			armadura: vars.armadura, resistencia_magica: vars.resistencia_magica, daño: vars. daño,
-			velocidad_ataque: vars.velocidad_ataque}, efecto: vars.efecto};
-		objetofinal_collection.insertOne(myobj, function(err, res) {
-			if (err) throw err;
-			console.log("1 documento insertado (ObjetoFinal)");
-			db.close();
+		var idObjetoFinal = req.body.idObjetoFinal;
+		var idObjeto1 = req.body.idObjeto1;
+		var idObjeto2 = req.body.idObjeto2;
+		var vida = req.body.vida;
+		var mana = req.body.mana;
+		var armadura = req.body.armadura;
+		var resistenciaMagica = req.body.resistenciaMagica;
+		var dano = req.body.dano;
+		var velocidadAtaque = req.body.velocidadAtaque;
+		var efecto = req.body.efecto;
+		res.status(200).json(insertarObjetoFinal(idObjeto,idStat,stat,descripcion));
 	});
 
-	function insertarObjetoFinal(idObjetoFinal,tipostat,stat,descripcion) {
-		var myobj = { idObjeto: vars.idObjeto, idStat: vars.idStat, stat: vars.stat, 
-			descripcion: vars.descripcion};
+	function insertarObjetoFinal(idO,idO1,idO2,vid,man,arma,resis,dan,velo,efect) {
+		var myobj = { idObjetoFinal: idO,
+			objetosCombinados: {objeto1: idO1, objeto2: idO2},stats: {vida: vid, mana: man,
+			armadura: arma, resistenciaMagica: resis, dano: dan,
+			velocidadAtaque: velo}, efecto: efect};
 		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
-			console.log("1 document inserted (Objeto)");
+			console.log("1 document inserted (ObjetoFinal)");
 		});
 		return myobj;
 	}	
