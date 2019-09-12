@@ -134,7 +134,8 @@ function router_init(db) {
 		var nombre = req.body.nombre;
 		var descripcion = req.body.descripcion;
 		var habilidad = req.body.habilidad;
-		var idOrigen = req.body.idOrigen;
+		var idOrigen1 = req.body.idOrigen1;
+		var idOrigen2 = req.body.idOrigen2;
 		var idClase = req.body.idClase;
 		var vida = req.body.vida;
 		var manaInicial = req.body.manaInicial;
@@ -145,14 +146,14 @@ function router_init(db) {
 		var velocidadAtaque = req.body.velocidadAtaque;
 		var idCosto = req.body.idCosto;
 		res.status(200).json(insertarPersonaje(nombre,descripcion,habilidad,
-			idOrigen,idClase,vida,manaInicial,manaMax,armadura,
+			idOrigen1,idOrigen2,idClase,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,idCosto));
 	});
 
-	function insertarPersonaje(nomb,desc,habi,idOri,idCla,vid,manaI,manaM,arma,resi,dan,velo,idCos) {
-		var myobj = { nombre: nomb, descripcion: desc, habilidad: habi, idOrigen: idOri,
-			idClase: idCla, vida: vid, manaInicial: manaI, manaMax: manaM, armadura: arma,
-			resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, idCosto: idCos};
+	function insertarPersonaje(nomb,desc,habi,idOri1,idOri2,idCla,vid,manaI,manaM,arma,resi,dan,velo,idCos) {
+		var myobj = { nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
+			idOrigen2: idOri2, idClase: idCla, vida: vid, manaInicial: manaI, manaMax: manaM, 
+			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, idCosto: idCos};
 		db.collection('personaje').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Personaje)");
@@ -251,21 +252,20 @@ function router_init(db) {
 		var idObjetoFinal = req.body.idObjetoFinal;
 		var idObjeto1 = req.body.idObjeto1;
 		var idObjeto2 = req.body.idObjeto2;
-		var vida = req.body.vida;
-		var mana = req.body.mana;
-		var armadura = req.body.armadura;
-		var resistenciaMagica = req.body.resistenciaMagica;
-		var dano = req.body.dano;
-		var velocidadAtaque = req.body.velocidadAtaque;
+		var idStat1 = req.body.idStat1;
+		var idStat2 = req.body.idStat2;
+		var stat1 = req.body.stat1;
+		var stat2 = req.body.stat2;
 		var efecto = req.body.efecto;
-		res.status(200).json(insertarObjetoFinal(idObjeto,idStat,stat,descripcion));
+		res.status(200).json(insertarObjetoFinal(idObjetoFinal,idObjeto1,
+			idObjeto2,idStat1,idStat2,stat1,stat2,efecto));
 	});
 
-	function insertarObjetoFinal(idO,idO1,idO2,vid,man,arma,resis,dan,velo,efect) {
+	function insertarObjetoFinal(idO,idO1,idO2,idS1,idS2,sta1,sta2,efect) {
 		var myobj = { idObjetoFinal: idO,
-			objetosCombinados: {objeto1: idO1, objeto2: idO2},stats: {vida: vid, mana: man,
-			armadura: arma, resistenciaMagica: resis, dano: dan,
-			velocidadAtaque: velo}, efecto: efect};
+			objetosCombinados: {objeto1: idO1, objeto2: idO2}, 
+			idStat1: idS1, idStat2: idS2, stat1: sta1,
+			stat2: sta2, efecto: efect};
 		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (ObjetoFinal)");

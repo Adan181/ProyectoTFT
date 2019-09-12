@@ -1,14 +1,15 @@
 extends layout
 
 block content
-    form(method="POST", action="api/new/objeto")
+    form(method="POST", action="api/new/objetofinal")
       div.form-group
-        label idObjeto
+        label idObjetoFinal
         input.form-control(name="idObjeto", type="text", placeholder="ID")
-        label idStat
+        label idObjeto1
         input.form-control(name="idStat", type="text", placeholder="ID")
-        label stat
-        input.form-control(name="stat", type="text", placeholder="Número")
-        label descripcion
+        label idObjeto2
+        input.form-control(name="idStat", type="text", placeholder="ID")
+        
+        label efecto
         input.form-control(name="descripcion", type="text", placeholder="Texto")
       button.btn.btn-primary Aceptar
