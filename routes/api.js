@@ -131,6 +131,7 @@ function router_init(db) {
 	});
 
 	router.post('/new/personaje', function(req, res, next) {
+		var idPersonaje = req.body.idPersonaje;
 		var nombre = req.body.nombre;
 		var descripcion = req.body.descripcion;
 		var habilidad = req.body.habilidad;
@@ -144,16 +145,17 @@ function router_init(db) {
 		var resistenciaMagica = req.body.resistenciaMagica;
 		var dano = req.body.dano;
 		var velocidadAtaque = req.body.velocidadAtaque;
+		var rango = req.body.rango;
 		var idCosto = req.body.idCosto;
-		res.status(200).json(insertarPersonaje(nombre,descripcion,habilidad,
+		res.status(200).json(insertarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase,vida,manaInicial,manaMax,armadura,
-			resistenciaMagica,dano,velocidadAtaque,idCosto));
+			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
 	});
 
-	function insertarPersonaje(nomb,desc,habi,idOri1,idOri2,idCla,vid,manaI,manaM,arma,resi,dan,velo,idCos) {
-		var myobj = { nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
+	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
+		var myobj = { idPersonaje: idP, nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
 			idOrigen2: idOri2, idClase: idCla, vida: vid, manaInicial: manaI, manaMax: manaM, 
-			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, idCosto: idCos};
+			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos};
 		db.collection('personaje').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Personaje)");
@@ -162,13 +164,19 @@ function router_init(db) {
 	}
 
 	router.post('/new/minileyenda', function(req, res) {
+		var idMinileyenda = req.body.idMinileyenda;
 		var nombre = req.body.nombre;
-		var idTier = req.body.idTier;
-		res.status(200).json(insertarMinileyenda(nombre,idTier));
+		var idRareza = req.body.idRareza;
+		var curiosidad = req.body.curiosidad;
+		var historia = req.body.historia;
+		var costo = req.body.costo;
+		res.status(200).json(insertarMinileyenda(idMinileyenda,nombre,idRareza,curiosidad,
+			historia,costo));
 	});
 
-	function insertarMinileyenda(nomb,idT) {
-		var myobj = { nombre: nomb, idTier: idT};
+	function insertarMinileyenda(idM,nomb,idR,curio,histo,cost) {
+		var myobj = { idMinileyenda: idM, nombre: nomb, idRareza: idR, curiosidad: curio, historia: histo,
+			costo: cost};
 		db.collection('minileyenda').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (MiniLeyenda)");
@@ -177,13 +185,14 @@ function router_init(db) {
 	}
 
 	router.post('/new/costo', function(req, res) {
+		var idCosto = req.body.idCosto;
 		var probabilidad = req.body.probabilidad;
 		var idColor = req.body.idColor;
 		res.status(200).json(insertarCosto(probabilidad,idColor));
 	});
 
-	function insertarCosto(prob,idC) {
-		var myobj = { probabilidad: prob, idColor: idC};
+	function insertarCosto(idCos,prob,idC) {
+		var myobj = { idCosto: idCos, probabilidad: prob, idColor: idC};
 		db.collection('costo').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Costo)");
@@ -195,13 +204,15 @@ function router_init(db) {
 		var idClase = req.body.idClase;
 		var nombre = req.body.nombre;
 		var efecto = req.body.efecto;
-		var cantidad = req.body.cantidad;
-		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad));	
+		var cantidad1 = req.body.cantidad1;
+		var cantidad2 = req.body.cantidad2;
+		var cantidad3 = req.body.cantidad3;
+		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));	
 	});
 
-	function insertarClase(idC,nomb,efect,canti) {
+	function insertarClase(idC,nomb,efect,canti1,canti2,canti3) {
 		var myobj = { idClase: idC, nombre: nomb, efecto: efect, 
-			cantidad: canti};
+			cantidad1: canti1, cantidad2: canti2, cantidad3: canti3};
 		db.collection('clase').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Clase)");
@@ -214,14 +225,16 @@ function router_init(db) {
 		var idOrigen = req.body.idOrigen;
 		var nombre = req.body.nombre;
 		var efecto = req.body.efecto;
-		var cantidad = req.body.cantidad;
-		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto,cantidad));
+		var cantidad1 = req.body.cantidad1;
+		var cantidad2 = req.body.cantidad2;
+		var cantidad3 = req.body.cantidad3;
+		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto,cantidad1,cantidad2,cantidad3));
 
 	});
 
-	function insertarOrigen(idO,nomb,efect,canti) {
+	function insertarOrigen(idO,nomb,efect,canti1,canti2,canti3) {
 		var myobj = { idOrigen: idO, nombre: nomb, efecto: efect, 
-			cantidad: canti};
+			cantidad1: canti1, cantidad2: canti2, cantidad3: canti3};
 		db.collection('origen').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Origen)");
@@ -235,7 +248,6 @@ function router_init(db) {
 		var stat = req.body.stat;
 		var descripcion = req.body.descripcion;
 		res.status(200).json(insertarObjeto(idObjeto,idStat,stat,descripcion));
-	
 	});
 
 	function insertarObjeto(idO,idS,sta,desc) {
