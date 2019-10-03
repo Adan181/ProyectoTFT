@@ -137,7 +137,8 @@ function router_init(db) {
 		var habilidad = req.body.habilidad;
 		var idOrigen1 = req.body.idOrigen1;
 		var idOrigen2 = req.body.idOrigen2;
-		var idClase = req.body.idClase;
+		var idClase1 = req.body.idClase1;
+		var idClase2 = req.body.idClase2;
 		var vida = req.body.vida;
 		var manaInicial = req.body.manaInicial;
 		var manaMax = req.body.manaMax;
@@ -148,13 +149,13 @@ function router_init(db) {
 		var rango = req.body.rango;
 		var idCosto = req.body.idCosto;
 		res.status(200).json(insertarPersonaje(idPersonaje,nombre,descripcion,habilidad,
-			idOrigen1,idOrigen2,idClase,vida,manaInicial,manaMax,armadura,
+			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
 	});
 
-	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
+	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
 		var myobj = { idPersonaje: idP, nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
-			idOrigen2: idOri2, idClase: idCla, vida: vid, manaInicial: manaI, manaMax: manaM, 
+			idOrigen2: idOri2, idClase1: idCla1, idClase2: idCla2, vida: vid, manaInicial: manaI, manaMax: manaM, 
 			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos};
 		db.collection('personaje').insertOne(myobj, function(err, res) {
 			if (err) throw err;
@@ -166,16 +167,15 @@ function router_init(db) {
 	router.post('/new/minileyenda', function(req, res) {
 		var idMinileyenda = req.body.idMinileyenda;
 		var nombre = req.body.nombre;
-		var idRareza = req.body.idRareza;
 		var curiosidad = req.body.curiosidad;
 		var historia = req.body.historia;
 		var costo = req.body.costo;
-		res.status(200).json(insertarMinileyenda(idMinileyenda,nombre,idRareza,curiosidad,
+		res.status(200).json(insertarMinileyenda(idMinileyenda,nombre,curiosidad,
 			historia,costo));
 	});
 
 	function insertarMinileyenda(idM,nomb,idR,curio,histo,cost) {
-		var myobj = { idMinileyenda: idM, nombre: nomb, idRareza: idR, curiosidad: curio, historia: histo,
+		var myobj = { idMinileyenda: idM, nombre: nomb, curiosidad: curio, historia: histo,
 			costo: cost};
 		db.collection('minileyenda').insertOne(myobj, function(err, res) {
 			if (err) throw err;
@@ -244,14 +244,15 @@ function router_init(db) {
 
 	router.post('/new/objeto', function(req, res) {		
 		var idObjeto = req.body.idObjeto;
+		var nombre = req.body.nombre;
 		var idStat = req.body.idStat;
 		var stat = req.body.stat;
 		var descripcion = req.body.descripcion;
-		res.status(200).json(insertarObjeto(idObjeto,idStat,stat,descripcion));
+		res.status(200).json(insertarObjeto(idObjeto,nombre,idStat,stat,descripcion));
 	});
 
-	function insertarObjeto(idO,idS,sta,desc) {
-		var myobj = { idObjeto: idO, idStat: idS, stat: sta, 
+	function insertarObjeto(idO,nomb,idS,sta,desc) {
+		var myobj = { idObjeto: idO, nombre: nomb, idStat: idS, stat: sta, 
 			descripcion: desc};
 		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
@@ -262,6 +263,7 @@ function router_init(db) {
 
 	router.post('/new/objetofinal', function(req, res) {
 		var idObjetoFinal = req.body.idObjetoFinal;
+		var nombre = req.body.nombre;
 		var idObjeto1 = req.body.idObjeto1;
 		var idObjeto2 = req.body.idObjeto2;
 		var idStat1 = req.body.idStat1;
@@ -269,12 +271,12 @@ function router_init(db) {
 		var stat1 = req.body.stat1;
 		var stat2 = req.body.stat2;
 		var efecto = req.body.efecto;
-		res.status(200).json(insertarObjetoFinal(idObjetoFinal,idObjeto1,
+		res.status(200).json(insertarObjetoFinal(idObjetoFinal,nombre,idObjeto1,
 			idObjeto2,idStat1,idStat2,stat1,stat2,efecto));
 	});
 
-	function insertarObjetoFinal(idO,idO1,idO2,idS1,idS2,sta1,sta2,efect) {
-		var myobj = { idObjetoFinal: idO,
+	function insertarObjetoFinal(idO,nomb,idO1,idO2,idS1,idS2,sta1,sta2,efect) {
+		var myobj = { idObjetoFinal: idO, nombre: nomb,
 			objetosCombinados: {objeto1: idO1, objeto2: idO2}, 
 			idStat1: idS1, idStat2: idS2, stat1: sta1,
 			stat2: sta2, efecto: efect};
