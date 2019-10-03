@@ -148,7 +148,11 @@ function router_init(db) {
 		var velocidadAtaque = req.body.velocidadAtaque;
 		var rango = req.body.rango;
 		var idCosto = req.body.idCosto;
+
 		res.status(200).json(insertarPersonaje(idPersonaje,nombre,descripcion,habilidad,
+			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
+			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+		res.status(200).json(actualizarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
 	});
@@ -162,6 +166,25 @@ function router_init(db) {
 			console.log("1 document inserted (Personaje)");
 		});
 		return myobj;
+	}
+
+	function actualizarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
+		var myquery = { idPersonaje: idP };
+		var newvalues = { $set: {nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
+			idOrigen2: idOri2, idClase1: idCla1, idClase2: idCla2, vida: vid, manaInicial: manaI, manaMax: manaM, 
+			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos} };
+		db.collection('personaje').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+			console.log("1 document updated (Personaje)");
+		});
+	}
+
+	function eliminarPersonaje(idP) {
+		var myquery = { idPersonaje: idP };
+		db.collection('personaje').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (Personaje)");
+		});
 	}
 
 	router.post('/new/minileyenda', function(req, res) {
@@ -182,6 +205,24 @@ function router_init(db) {
 			console.log("1 document inserted (MiniLeyenda)");
 		});
 		return myobj;
+	}
+
+	function actualizarMinileyenda(idM,nomb,idR,curio,histo,cost) {
+		var myquery = { idMinileyenda: idM };
+		var newvalues = { $set: {nombre: nomb, curiosidad: curio, historia: histo,
+			costo: cost} };
+		db.collection('minileyenda').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (MiniLeyenda)");
+  		});
+	}
+
+	function eliminarMinileyenda(idM) {
+		var myquery = { idMinileyenda: idM };
+		db.collection('minileyenda').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (MiniLeyenda)");
+		});
 	}
 
 	router.post('/new/costo', function(req, res) {
