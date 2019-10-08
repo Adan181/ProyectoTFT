@@ -155,6 +155,7 @@ function router_init(db) {
 		res.status(200).json(actualizarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+		res.status(200).json(eliminarPersonaje(idPersonaje));
 	});
 
 	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
@@ -177,6 +178,7 @@ function router_init(db) {
 			if (err) throw err;
 			console.log("1 document updated (Personaje)");
 		});
+		return newvalues;
 	}
 
 	function eliminarPersonaje(idP) {
@@ -185,6 +187,7 @@ function router_init(db) {
 			if (err) throw err;
 			console.log("1 document deleted (Personaje)");
 		});
+		return myquery;
 	}
 
 	router.post('/new/minileyenda', function(req, res) {
@@ -195,9 +198,12 @@ function router_init(db) {
 		var costo = req.body.costo;
 		res.status(200).json(insertarMinileyenda(idMinileyenda,nombre,curiosidad,
 			historia,costo));
+		res.status(200).json(actualizarMinileyenda(idMinileyenda,nombre,curiosidad,
+			historia,costo));
+		res.status(200).json(eliminarMinileyenda(idMinileyenda));
 	});
 
-	function insertarMinileyenda(idM,nomb,idR,curio,histo,cost) {
+	function insertarMinileyenda(idM,nomb,curio,histo,cost) {
 		var myobj = { idMinileyenda: idM, nombre: nomb, curiosidad: curio, historia: histo,
 			costo: cost};
 		db.collection('minileyenda').insertOne(myobj, function(err, res) {
@@ -207,7 +213,7 @@ function router_init(db) {
 		return myobj;
 	}
 
-	function actualizarMinileyenda(idM,nomb,idR,curio,histo,cost) {
+	function actualizarMinileyenda(idM,nomb,curio,histo,cost) {
 		var myquery = { idMinileyenda: idM };
 		var newvalues = { $set: {nombre: nomb, curiosidad: curio, historia: histo,
 			costo: cost} };
@@ -215,6 +221,7 @@ function router_init(db) {
 			if (err) throw err;
     		console.log("1 document updated (MiniLeyenda)");
   		});
+  		return newvalues;
 	}
 
 	function eliminarMinileyenda(idM) {
@@ -223,13 +230,16 @@ function router_init(db) {
 			if (err) throw err;
 			console.log("1 document deleted (MiniLeyenda)");
 		});
+		return myquery;
 	}
 
 	router.post('/new/costo', function(req, res) {
 		var idCosto = req.body.idCosto;
 		var probabilidad = req.body.probabilidad;
 		var idColor = req.body.idColor;
-		res.status(200).json(insertarCosto(probabilidad,idColor));
+		res.status(200).json(insertarCosto(idCosto,probabilidad,idColor));
+		res.status(200).json(actualizarCosto(idCosto,probabilidad,idColor));
+		res.status(200).json(eliminarCosto(idCosto));
 	});
 
 	function insertarCosto(idCos,prob,idC) {
@@ -241,6 +251,25 @@ function router_init(db) {
 		return myobj;
 	}
 
+	function actualizarCosto(idCos,prob,idC) {
+		var myquery = { idCosto: idCos };
+		var newvalues = { $set: {probabilidad: prob, idColor: idC} };
+		db.collection('costo').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (Costo)");
+  		});
+  		return newvalues;
+	}
+
+	function eliminarCosto(idCos) {
+		var myquery = { idCosto: idCos };
+		db.collection('costo').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (Costo)");
+		});
+		return myquery;
+	}
+
 	router.post('/new/clase', function(req, res) {		
 		var idClase = req.body.idClase;
 		var nombre = req.body.nombre;
@@ -249,6 +278,8 @@ function router_init(db) {
 		var cantidad2 = req.body.cantidad2;
 		var cantidad3 = req.body.cantidad3;
 		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));	
+		res.status(200).json(actualizarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));
+		res.status(200).json(eliminarClase(idClase));
 	});
 
 	function insertarClase(idC,nomb,efect,canti1,canti2,canti3) {
@@ -261,6 +292,25 @@ function router_init(db) {
 		return myobj;
 	}
 
+	function actualizarClase(idC,nomb,efect,canti1,canti2,canti3) {
+		var myquery = { idClase: idC };
+		var newvalues = { $set: {nombre: nomb, efecto: efect, 
+			cantidad1: canti1, cantidad2: canti2, cantidad3: canti3} };
+		db.collection('clase').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (Clase)");
+  		});
+  		return newvalues;
+	}
+
+	function eliminarClase(idC) {
+		var myquery = { idClase: idC };
+		db.collection('clase').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (Clase)");
+		});
+		return myquery;
+	}
 
 	router.post('/new/origen', function(req, res) {		
 		var idOrigen = req.body.idOrigen;
@@ -270,7 +320,8 @@ function router_init(db) {
 		var cantidad2 = req.body.cantidad2;
 		var cantidad3 = req.body.cantidad3;
 		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto,cantidad1,cantidad2,cantidad3));
-
+		res.status(200).json(actualizarOrigen(idOrigen,nombre,efecto,cantidad1,cantidad2,cantidad3));
+		res.status(200).json(eliminarOrigen(idOrigen));
 	});
 
 	function insertarOrigen(idO,nomb,efect,canti1,canti2,canti3) {
@@ -281,25 +332,69 @@ function router_init(db) {
 			console.log("1 document inserted (Origen)");
 		});
 		return myobj;
+	}
+
+	function actualizarOrigen(idO,nomb,efect,canti1,canti2,canti3) {
+		var myquery = { idOrigen: idO };
+		var newvalues = { $set: {nombre: nomb, efecto: efect, 
+			cantidad1: canti1, cantidad2: canti2, cantidad3: canti3} };
+		db.collection('origen').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (Origen)");
+  		});
+  		return newvalues;
+	}
+
+	function eliminarOrigen(idO) {
+		var myquery = { idOrigen: idO };
+		db.collection('origen').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (Origen)");
+		});
+		return myquery;
 	}	
 
 	router.post('/new/objeto', function(req, res) {		
 		var idObjeto = req.body.idObjeto;
 		var nombre = req.body.nombre;
-		var idStat = req.body.idStat;
-		var stat = req.body.stat;
+		var idStat1 = req.body.idStat1;
+		var idStat2 = req.body.idStat2;
+		var stat1 = req.body.stat1;
+		var stat2 = req.body.stat2;
 		var descripcion = req.body.descripcion;
-		res.status(200).json(insertarObjeto(idObjeto,nombre,idStat,stat,descripcion));
+		res.status(200).json(insertarObjeto(idObjeto,nombre,idStat1,idStat2,stat1,stat2,descripcion));
+		res.status(200).json(actualizarObjeto(idObjeto,nombre,idStat1,idStat2,stat1,stat2,descripcion));
+		res.status(200).json(eliminarObjeto(idObjeto));
 	});
 
-	function insertarObjeto(idO,nomb,idS,sta,desc) {
-		var myobj = { idObjeto: idO, nombre: nomb, idStat: idS, stat: sta, 
-			descripcion: desc};
+	function insertarObjeto(idO,nomb,idS1,idS2,sta1,sta2,desc) {
+		var myobj = { idObjeto: idO, nombre: nomb,
+			idStat1: idS1, idStat2: idS2, stat1: sta1, stat2: sta2, descripcion: desc};
 		db.collection('objeto').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Objeto)");
 		});
 		return myobj;
+	}
+
+	function actualizarObjeto(idO,nomb,idS1,idS2,sta1,sta2,desc) {
+		var myquery = { idObjeto: idO };
+		var newvalues = { $set: {nombre: nomb,
+			idStat1: idS1, idStat2: idS2, stat1: sta1, stat2: sta2, descripcion: desc} };
+		db.collection('objeto').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (Objeto)");
+  		});
+  		return newvalues;
+	}
+
+	function eliminarObjeto(idO) {
+		var myquery = { idObjeto: idO };
+		db.collection('objeto').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (Objeto)");
+		});
+		return myquery;
 	}	
 
 	router.post('/new/objetofinal', function(req, res) {
@@ -312,22 +407,47 @@ function router_init(db) {
 		var stat1 = req.body.stat1;
 		var stat2 = req.body.stat2;
 		var efecto = req.body.efecto;
+		var unico = req.body.unico;
 		res.status(200).json(insertarObjetoFinal(idObjetoFinal,nombre,idObjeto1,
-			idObjeto2,idStat1,idStat2,stat1,stat2,efecto));
+			idObjeto2,idStat1,idStat2,stat1,stat2,efecto,unico));
+		res.status(200).json(actualizarObjetoFinal(idObjetoFinal,nombre,idObjeto1,
+			idObjeto2,idStat1,idStat2,stat1,stat2,efecto,unico));
+		res.status(200).json(eliminarObjetoFinal(idObjetoFinal));
 	});
 
-	function insertarObjetoFinal(idO,nomb,idO1,idO2,idS1,idS2,sta1,sta2,efect) {
+	function insertarObjetoFinal(idO,nomb,idO1,idO2,idS1,idS2,sta1,sta2,efect,unic) {
 		var myobj = { idObjetoFinal: idO, nombre: nomb,
 			objetosCombinados: {objeto1: idO1, objeto2: idO2}, 
 			idStat1: idS1, idStat2: idS2, stat1: sta1,
-			stat2: sta2, efecto: efect};
-		db.collection('objeto').insertOne(myobj, function(err, res) {
+			stat2: sta2, efecto: efect, unico: unic};
+		db.collection('objetofinal').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (ObjetoFinal)");
 		});
 		return myobj;
+	}
+
+	function actualizarObjetoFinal(idO,nomb,idO1,idO2,idS1,idS2,sta1,sta2,efect,unic) {
+		var myquery = { idObjetoFinal: idO };
+		var newvalues = { $set: {nombre: nomb,
+			objetosCombinados: {objeto1: idO1, objeto2: idO2}, 
+			idStat1: idS1, idStat2: idS2, stat1: sta1,
+			stat2: sta2, efecto: efect, unico: unic} };
+		db.collection('objetofinal').updateOne(myquery, newvalues, function(err, res) {
+			if (err) throw err;
+    		console.log("1 document updated (ObjetoFinal)");
+  		});
+  		return newvalues;
+	}
+
+	function eliminarObjetoFinal(idO) {
+		var myquery = { idObjetoFinal: idO };
+		db.collection('objetofinal').deleteOne(myquery, function(err, obj) {
+			if (err) throw err;
+			console.log("1 document deleted (ObjetoFinal)");
+		});
+		return myquery;
 	}	
-	
 
 	return router;
 }
