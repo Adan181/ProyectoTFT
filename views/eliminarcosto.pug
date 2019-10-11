@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1 Eliminar/borrar Costo (por ID)
+    form(method="POST", action="api/delete/costo")
+      div.form-group
+      	label idCosto
+        input.form-control(name="idCosto", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

@@ -1,8 +1,8 @@
 extends layout
 
 block content
-	h1 Nueva MiniLeyenda
-    form(method="POST", action="api/new/minileyenda")
+    h1 Actualizar MiniLeyenda (por ID)
+    form(method="POST", action="api/update/minileyenda")
       div.form-group
         label idMinileyenda
         input.form-control(name="idMinileyenda", type="text", placeholder="Texto")

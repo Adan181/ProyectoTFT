@@ -152,9 +152,35 @@ function router_init(db) {
 		res.status(200).json(insertarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+	});
+
+	router.post('/update/personaje', function(req, res, next) {
+		var idPersonaje = req.body.idPersonaje;
+		var nombre = req.body.nombre;
+		var descripcion = req.body.descripcion;
+		var habilidad = req.body.habilidad;
+		var idOrigen1 = req.body.idOrigen1;
+		var idOrigen2 = req.body.idOrigen2;
+		var idClase1 = req.body.idClase1;
+		var idClase2 = req.body.idClase2;
+		var vida = req.body.vida;
+		var manaInicial = req.body.manaInicial;
+		var manaMax = req.body.manaMax;
+		var armadura = req.body.armadura;
+		var resistenciaMagica = req.body.resistenciaMagica;
+		var dano = req.body.dano;
+		var velocidadAtaque = req.body.velocidadAtaque;
+		var rango = req.body.rango;
+		var idCosto = req.body.idCosto;
+
 		res.status(200).json(actualizarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
 			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+	});
+
+	router.post('/delete/personaje', function(req, res, next) {
+		var idPersonaje = req.body.idPersonaje;
+
 		res.status(200).json(eliminarPersonaje(idPersonaje));
 	});
 
@@ -195,17 +221,29 @@ function router_init(db) {
 		var nombre = req.body.nombre;
 		var curiosidad = req.body.curiosidad;
 		var historia = req.body.historia;
-		var costo = req.body.costo;
+
 		res.status(200).json(insertarMinileyenda(idMinileyenda,nombre,curiosidad,
-			historia,costo));
+			historia));
+	});
+
+	router.post('/update/minileyenda', function(req, res) {
+		var idMinileyenda = req.body.idMinileyenda;
+		var nombre = req.body.nombre;
+		var curiosidad = req.body.curiosidad;
+		var historia = req.body.historia;
+
 		res.status(200).json(actualizarMinileyenda(idMinileyenda,nombre,curiosidad,
-			historia,costo));
+			historia));
+	});
+
+	router.post('/delete/minileyenda', function(req, res) {
+		var idMinileyenda = req.body.idMinileyenda;
+
 		res.status(200).json(eliminarMinileyenda(idMinileyenda));
 	});
 
 	function insertarMinileyenda(idM,nomb,curio,histo,cost) {
-		var myobj = { idMinileyenda: idM, nombre: nomb, curiosidad: curio, historia: histo,
-			costo: cost};
+		var myobj = { idMinileyenda: idM, nombre: nomb, curiosidad: curio, historia: histo};
 		db.collection('minileyenda').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (MiniLeyenda)");
@@ -215,8 +253,7 @@ function router_init(db) {
 
 	function actualizarMinileyenda(idM,nomb,curio,histo,cost) {
 		var myquery = { idMinileyenda: idM };
-		var newvalues = { $set: {nombre: nomb, curiosidad: curio, historia: histo,
-			costo: cost} };
+		var newvalues = { $set: {nombre: nomb, curiosidad: curio, historia: histo} };
 		db.collection('minileyenda').updateOne(myquery, newvalues, function(err, res) {
 			if (err) throw err;
     		console.log("1 document updated (MiniLeyenda)");
@@ -237,8 +274,23 @@ function router_init(db) {
 		var idCosto = req.body.idCosto;
 		var probabilidad = req.body.probabilidad;
 		var idColor = req.body.idColor;
+
 		res.status(200).json(insertarCosto(idCosto,probabilidad,idColor));
+	});
+
+	router.post('/update/costo', function(req, res) {
+		var idCosto = req.body.idCosto;
+		var probabilidad = req.body.probabilidad;
+		var idColor = req.body.idColor;
+
 		res.status(200).json(actualizarCosto(idCosto,probabilidad,idColor));
+	});
+
+	router.post('/delete/costo', function(req, res) {
+		var idCosto = req.body.idCosto;
+		var probabilidad = req.body.probabilidad;
+		var idColor = req.body.idColor;
+		
 		res.status(200).json(eliminarCosto(idCosto));
 	});
 

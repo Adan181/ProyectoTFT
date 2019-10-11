@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Eliminar/borrar MiniLeyenda (por ID)
+    form(method="POST", action="api/delete/minileyenda")
+      div.form-group
+        label idMinileyenda
+        input.form-control(name="idMinileyenda", type="text", placeholder="Texto")
+      button.btn.btn-primary Aceptar

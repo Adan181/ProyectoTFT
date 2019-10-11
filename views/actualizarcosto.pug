@@ -1,8 +1,8 @@
 extends layout
 
 block content
-	h1 Nuevo Costo
-    form(method="POST", action="api/new/costo")
+	h1 Actualizar Costo (por ID)
+    form(method="POST", action="api/update/costo")
       div.form-group
       	label idCosto
         input.form-control(name="idCosto", type="text", placeholder="ID")

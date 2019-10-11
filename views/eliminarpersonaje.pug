@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Eliminar/borrar personaje (por ID)
+    form(method="POST", action="api/delete/personaje")
+      div.form-group
+        label idPersonaje
+        input.form-control(name="idPersonaje", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

@@ -1,8 +1,8 @@
 extends layout
 
 block content
-    h1 Nuevo personaje
-    form(method="POST", action="api/new/personaje")
+    h1 Actualizar personaje (por ID)
+    form(method="POST", action="api/update/personaje")
       div.form-group
         label idPersonaje
         input.form-control(name="idPersonaje", type="text", placeholder="ID")
