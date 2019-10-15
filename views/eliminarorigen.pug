@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Eliminar/borrar origen (por ID)
+    form(method="POST", action="api/delete/origen")
+      div.form-group
+        label idOrigen
+        input.form-control(name="idOrigen", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

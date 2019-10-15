@@ -288,8 +288,6 @@ function router_init(db) {
 
 	router.post('/delete/costo', function(req, res) {
 		var idCosto = req.body.idCosto;
-		var probabilidad = req.body.probabilidad;
-		var idColor = req.body.idColor;
 		
 		res.status(200).json(eliminarCosto(idCosto));
 	});
@@ -329,8 +327,24 @@ function router_init(db) {
 		var cantidad1 = req.body.cantidad1;
 		var cantidad2 = req.body.cantidad2;
 		var cantidad3 = req.body.cantidad3;
-		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));	
+
+		res.status(200).json(insertarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));
+	});
+
+	router.post('/update/clase', function(req, res) {		
+		var idClase = req.body.idClase;
+		var nombre = req.body.nombre;
+		var efecto = req.body.efecto;
+		var cantidad1 = req.body.cantidad1;
+		var cantidad2 = req.body.cantidad2;
+		var cantidad3 = req.body.cantidad3;
+
 		res.status(200).json(actualizarClase(idClase,nombre,efecto,cantidad1,cantidad2,cantidad3));
+	});
+
+	router.post('/delete/clase', function(req, res) {		
+		var idClase = req.body.idClase;
+
 		res.status(200).json(eliminarClase(idClase));
 	});
 
@@ -371,8 +385,24 @@ function router_init(db) {
 		var cantidad1 = req.body.cantidad1;
 		var cantidad2 = req.body.cantidad2;
 		var cantidad3 = req.body.cantidad3;
+
 		res.status(200).json(insertarOrigen(idOrigen,nombre,efecto,cantidad1,cantidad2,cantidad3));
+	});
+
+	router.post('/update/origen', function(req, res) {		
+		var idOrigen = req.body.idOrigen;
+		var nombre = req.body.nombre;
+		var efecto = req.body.efecto;
+		var cantidad1 = req.body.cantidad1;
+		var cantidad2 = req.body.cantidad2;
+		var cantidad3 = req.body.cantidad3;
+
 		res.status(200).json(actualizarOrigen(idOrigen,nombre,efecto,cantidad1,cantidad2,cantidad3));
+	});
+
+	router.post('/delete/origen', function(req, res) {		
+		var idOrigen = req.body.idOrigen;
+
 		res.status(200).json(eliminarOrigen(idOrigen));
 	});
 
@@ -414,8 +444,25 @@ function router_init(db) {
 		var stat1 = req.body.stat1;
 		var stat2 = req.body.stat2;
 		var descripcion = req.body.descripcion;
+
 		res.status(200).json(insertarObjeto(idObjeto,nombre,idStat1,idStat2,stat1,stat2,descripcion));
+	});
+
+	router.post('/update/objeto', function(req, res) {		
+		var idObjeto = req.body.idObjeto;
+		var nombre = req.body.nombre;
+		var idStat1 = req.body.idStat1;
+		var idStat2 = req.body.idStat2;
+		var stat1 = req.body.stat1;
+		var stat2 = req.body.stat2;
+		var descripcion = req.body.descripcion;
+
 		res.status(200).json(actualizarObjeto(idObjeto,nombre,idStat1,idStat2,stat1,stat2,descripcion));
+	});
+
+	router.post('/delete/objeto', function(req, res) {		
+		var idObjeto = req.body.idObjeto;
+
 		res.status(200).json(eliminarObjeto(idObjeto));
 	});
 
@@ -460,10 +507,39 @@ function router_init(db) {
 		var stat2 = req.body.stat2;
 		var efecto = req.body.efecto;
 		var unico = req.body.unico;
+
 		res.status(200).json(insertarObjetoFinal(idObjetoFinal,nombre,idObjeto1,
 			idObjeto2,idStat1,idStat2,stat1,stat2,efecto,unico));
+	});
+
+	router.post('/update/objetofinal', function(req, res) {
+		var idObjetoFinal = req.body.idObjetoFinal;
+		var nombre = req.body.nombre;
+		var idObjeto1 = req.body.idObjeto1;
+		var idObjeto2 = req.body.idObjeto2;
+		var idStat1 = req.body.idStat1;
+		var idStat2 = req.body.idStat2;
+		var stat1 = req.body.stat1;
+		var stat2 = req.body.stat2;
+		var efecto = req.body.efecto;
+		var unico = req.body.unico;
+
 		res.status(200).json(actualizarObjetoFinal(idObjetoFinal,nombre,idObjeto1,
 			idObjeto2,idStat1,idStat2,stat1,stat2,efecto,unico));
+	});
+
+	router.post('/delete/objetofinal', function(req, res) {
+		var idObjetoFinal = req.body.idObjetoFinal;
+		var nombre = req.body.nombre;
+		var idObjeto1 = req.body.idObjeto1;
+		var idObjeto2 = req.body.idObjeto2;
+		var idStat1 = req.body.idStat1;
+		var idStat2 = req.body.idStat2;
+		var stat1 = req.body.stat1;
+		var stat2 = req.body.stat2;
+		var efecto = req.body.efecto;
+		var unico = req.body.unico;
+		
 		res.status(200).json(eliminarObjetoFinal(idObjetoFinal));
 	});
 

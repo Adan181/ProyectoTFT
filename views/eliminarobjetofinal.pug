@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Eliminar/borrar objeto final (por ID)
+    form(method="POST", action="api/delete/objetofinal")
+      div.form-group
+        label idObjetoFinal
+        input.form-control(name="idObjeto", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

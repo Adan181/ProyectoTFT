@@ -1,11 +1,11 @@
 extends layout
 
 block content
-    h1 Nueva clase
-    form(method="POST", action="api/new/clase")
+    h1 Actualizar origen (por ID)
+    form(method="POST", action="api/update/origen")
       div.form-group
-        label idClase
-        input.form-control(name="idClase", type="text", placeholder="ID")
+        label idOrigen
+        input.form-control(name="idOrigen", type="text", placeholder="ID")
         label nombre
         input.form-control(name="nombre", type="text", placeholder="Texto")
         label efecto

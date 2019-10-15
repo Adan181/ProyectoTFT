@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Eliminar/borrar objeto (por ID)
+    form(method="POST", action="api/delete/objeto")
+      div.form-group
+        label idObjeto
+        input.form-control(name="idObjeto", type="text", placeholder="ID")
+      button.btn.btn-primary Aceptar

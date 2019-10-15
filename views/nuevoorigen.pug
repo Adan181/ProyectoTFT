@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    h1 Nuevo origen
     form(method="POST", action="api/new/origen")
       div.form-group
         label idOrigen
@@ -9,6 +10,10 @@ block content
         input.form-control(name="nombre", type="text", placeholder="Texto")
         label efecto
         input.form-control(name="efecto", type="text", placeholder="Texto")
-        label cantidad
-        input.form-control(name="cantidad", type="text", placeholder="Número")
+        label cantidad1
+        input.form-control(name="cantidad1", type="text", placeholder="Número")
+        label cantidad2
+        input.form-control(name="cantidad2", type="text", placeholder="Número")
+        label cantidad3
+        input.form-control(name="cantidad3", type="text", placeholder="Número")
       button.btn.btn-primary Aceptar

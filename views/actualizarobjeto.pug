@@ -1,15 +1,11 @@
 extends layout
 
 block content
-    h1 Nuevo objeto final
-    form(method="POST", action="api/new/objetofinal")
+    h1 Actualizar objeto (por ID)
+    form(method="POST", action="api/update/objeto")
       div.form-group
-        label idObjetoFinal
+        label idObjeto
         input.form-control(name="idObjeto", type="text", placeholder="ID")
-        label idObjeto1
-        input.form-control(name="idObjeto1", type="text", placeholder="ID")
-        label idObjeto2
-        input.form-control(name="idObjeto2", type="text", placeholder="ID")
         label idStat1
         input.form-control(name="idStat1", type="text", placeholder="ID")
         label idStat2
@@ -18,8 +14,6 @@ block content
         input.form-control(name="stat1", type="text", placeholder="Número")
         label stat2
         input.form-control(name="stat2", type="text", placeholder="Número")
-        label efecto
-        input.form-control(name="efecto", type="text", placeholder="Texto")
-        label unico
-        input.form-control(name="unico", type="text", placeholder="0/1 (No/Si)")
+        label descripcion
+        input.form-control(name="descripcion", type="text", placeholder="Texto")
       button.btn.btn-primary Aceptar
