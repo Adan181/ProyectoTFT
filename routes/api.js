@@ -130,6 +130,45 @@ function router_init(db) {
 		});
 	});
 
+	router.get('/clean/personaje',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/minileyenda',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/costo',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/clase',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/origen',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/objeto',function(req, res, next) {
+		
+	});
+
+	router.get('/clean/objetofinal',function(req, res, next) {
+		
+	});
+
+	function vaciarColeccion(colec) {
+		db.collection('#{colec}').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (#{colec})");
+		});
+		dbo.createCollection('#{colec}', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (#{colec})");
+  });
+	}
+
 	router.post('/new/personaje', function(req, res, next) {
 		var idPersonaje = req.body.idPersonaje;
 		var nombre = req.body.nombre;
@@ -148,10 +187,11 @@ function router_init(db) {
 		var velocidadAtaque = req.body.velocidadAtaque;
 		var rango = req.body.rango;
 		var idCosto = req.body.idCosto;
+		var activo = req.body.activo;
 
 		res.status(200).json(insertarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
-			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+			resistenciaMagica,dano,velocidadAtaque,rango,idCosto,activo));
 	});
 
 	router.post('/update/personaje', function(req, res, next) {
@@ -175,7 +215,7 @@ function router_init(db) {
 
 		res.status(200).json(actualizarPersonaje(idPersonaje,nombre,descripcion,habilidad,
 			idOrigen1,idOrigen2,idClase1,idClase2,vida,manaInicial,manaMax,armadura,
-			resistenciaMagica,dano,velocidadAtaque,rango,idCosto));
+			resistenciaMagica,dano,velocidadAtaque,rango,idCosto,activo));
 	});
 
 	router.post('/delete/personaje', function(req, res, next) {
@@ -184,10 +224,11 @@ function router_init(db) {
 		res.status(200).json(eliminarPersonaje(idPersonaje));
 	});
 
-	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
+	function insertarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos,act) {
 		var myobj = { idPersonaje: idP, nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
 			idOrigen2: idOri2, idClase1: idCla1, idClase2: idCla2, vida: vid, manaInicial: manaI, manaMax: manaM, 
-			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos};
+			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos,
+			activo: act};
 		db.collection('personaje').insertOne(myobj, function(err, res) {
 			if (err) throw err;
 			console.log("1 document inserted (Personaje)");
@@ -195,11 +236,12 @@ function router_init(db) {
 		return myobj;
 	}
 
-	function actualizarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos) {
+	function actualizarPersonaje(idP,nomb,desc,habi,idOri1,idOri2,idCla1,idCla2,vid,manaI,manaM,arma,resi,dan,velo,rang,idCos,act) {
 		var myquery = { idPersonaje: idP };
 		var newvalues = { $set: {nombre: nomb, descripcion: desc, habilidad: habi, idOrigen1: idOri1,
 			idOrigen2: idOri2, idClase1: idCla1, idClase2: idCla2, vida: vid, manaInicial: manaI, manaMax: manaM, 
-			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos} };
+			armadura: arma, resistenciaMagica: resi, dano: dan, velocidadAtaque: velo, rango: rang, idCosto: idCos,
+			activo: act} };
 		db.collection('personaje').updateOne(myquery, newvalues, function(err, res) {
 			if (err) throw err;
 			console.log("1 document updated (Personaje)");

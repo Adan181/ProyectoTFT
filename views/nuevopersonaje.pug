@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Nuevo personaje
+    h1 Nuevo Personaje
     form(method="POST", action="api/new/personaje")
       div.form-group
         label idPersonaje
@@ -42,4 +42,6 @@ block content
       div.form-group
         label idCosto
         input.form-control(name="idCosto", type="text", placeholder="ID")
+        label activo
+        input.form-control(name="activo", type="text", placeholder="0/1 (No/Si)")
       button.btn.btn-primary Aceptar
