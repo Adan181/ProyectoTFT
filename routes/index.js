@@ -90,6 +90,34 @@ router.get('/eliminarobjetofinal', function(req, res, next) {
   res.render('eliminarobjetofinal');
 });
 
+router.get('/vaciarpersonaje', function(req, res, next) {
+  res.render('vaciarpersonaje');
+});
+
+router.get('/vaciarminileyenda', function(req, res, next) {
+  res.render('vaciarminileyenda');
+});
+
+router.get('/vaciarcosto', function(req, res, next) {
+  res.render('vaciarcosto');
+});
+
+router.get('/vaciarclase', function(req, res, next) {
+  res.render('vaciarclase');
+});
+
+router.get('/vaciarorigen', function(req, res, next) {
+  res.render('vaciarorigen');
+});
+
+router.get('/vaciarobjeto', function(req, res, next) {
+  res.render('vaciarobjeto');
+});
+
+router.get('/vaciarobjetofinal', function(req, res, next) {
+  res.render('vaciarobjetofinal');
+});
+
 router.get('/bdlinks', function(req, res, next) {
   res.render('bdlinks');
 });

@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1 Vaciar Costo
+    form(method="POST", action="api/clean/costo")
+      div.form-group
+        h3 ¿Estás seguro?
+      button.btn.btn-primary Aceptar

@@ -131,42 +131,126 @@ function router_init(db) {
 	});
 
 	router.get('/clean/personaje',function(req, res, next) {
-		
+		vaciarPersonaje();
+
+		personaje_collection.find({}).toArray(function(err,docs) {
+			if (err){
+				return res.status(404).json({error:"Error"});
+			} 
+			else{
+				return res.status(200).json(docs);
+			}	
+			
+		});
 	});
 
 	router.get('/clean/minileyenda',function(req, res, next) {
-		
+		vaciarMinileyenda();
+
+		res.render('bdlinks');
 	});
 
 	router.get('/clean/costo',function(req, res, next) {
-		
+		vaciarCosto();
+
+		res.render('bdlinks');
 	});
 
 	router.get('/clean/clase',function(req, res, next) {
-		
+		vaciarClase();
+
+		res.render('bdlinks');
 	});
 
 	router.get('/clean/origen',function(req, res, next) {
-		
+		vaciarOrigen();
+
+		res.render('bdlinks');
 	});
 
 	router.get('/clean/objeto',function(req, res, next) {
-		
+		vaciarObjeto();
+
+		res.render('bdlinks');
 	});
 
 	router.get('/clean/objetofinal',function(req, res, next) {
-		
+		vaciarObjetofinal();
+
+		res.render('bdlinks');
 	});
 
-	function vaciarColeccion(colec) {
-		db.collection('#{colec}').drop(function(err, delOK) {
+	function vaciarPersonaje() {
+		db.collection('personaje').drop(function(err, delOK) {
 			if (err) throw err;
-			if (delOK) console.log("Collection deleted (#{colec})");
+			if (delOK) console.log("Collection deleted (Personaje)");
 		});
-		dbo.createCollection('#{colec}', function(err, res) {
+	}
+
+	function vaciarMinileyenda() {
+		db.collection('minileyenda').drop(function(err, delOK) {
 			if (err) throw err;
-			console.log("Collection created! (#{colec})");
-  });
+			if (delOK) console.log("Collection deleted (Minileyenda)");
+		});
+		db.createCollection('minileyenda', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Minileyenda)");
+		});
+	}
+
+	function vaciarCosto() {
+		db.collection('costo').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (Costo)");
+		});
+		db.createCollection('costo', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Costo)");
+		});
+	}
+
+	function vaciarClase() {
+		db.collection('clase').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (Clase)");
+		});
+		db.createCollection('clase', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Clase)");
+		});
+	}
+
+	function vaciarOrigen() {
+		db.collection('origen').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (Origen)");
+		});
+		db.createCollection('origen', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Origen)");
+		});
+	}
+
+	function vaciarObjeto() {
+		db.collection('objeto').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (Objeto)");
+		});
+		db.createCollection('objeto', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Objeto)");
+		});
+	}
+
+	function vaciarObjetofinal() {
+		db.collection('objetofinal').drop(function(err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted (Objetofinal)");
+		});
+		db.createCollection('objetofinal', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Objetofinal)");
+		});
 	}
 
 	router.post('/new/personaje', function(req, res, next) {

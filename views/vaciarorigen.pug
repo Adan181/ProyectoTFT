@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1 Vaciar Origen
+    form(method="POST", action="api/clean/origen")
+      div.form-group
+        h3 ¿Estás seguro?
+      button.btn.btn-primary Aceptar
