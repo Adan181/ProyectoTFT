@@ -1,185 +1,214 @@
-extends layout
+doctype html
+|
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title LOL TeamFight Tactics
+  meta(name='description' content='Blueprint: A basic template for a responsive multi-level sidebar menu')
+  meta(name='keywords' content='blueprint, template, html, css, menu, sidebar, responsive, mobile-friendly')
+  meta(name='author' content='Codrops')
+  link(rel='shortcut icon' href='favicon.ico')
+  // food icons
+  link(rel='stylesheet' type='text/css' href='../public/stylesheets/organicfoodicons.css')
+  // demo styles
+  link(rel='stylesheet' type='text/css' href='stylesheets/demo.css')
+  // menu styles
+  link(rel='stylesheet' type='text/css' href='stylesheets/component.css')
+  script(src='javascripts/modernizr-custom.js')
+  script(type='text/javascript').
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7243260-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+// Main container
+.container
+  // Blueprint header
+  header.bp-header.cf
+    .dummy-logo
+      .dummy-icon.foodicon.foodicon--coconut
+      h2.dummy-heading TeamFight Tactics
+    .bp-header__main
+      span.bp-header__present
+        | Blueprint 
+        span.bp-tooltip.bp-icon.bp-icon--about(data-content='The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration.')
+      h1.bp-header__title IATI
+      nav.bp-nav
+        a.bp-nav__item.bp-icon.bp-icon--prev(href='http://tympanus.net/Blueprints/PageStackNavigation/' data-info='previous Blueprint')
+          span Previous Blueprint
+        // a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
+        a.bp-nav__item.bp-icon.bp-icon--drop(href='http://tympanus.net/codrops/?p=25521' data-info='back to the Codrops article')
+          span back to the Codrops article
+        a.bp-nav__item.bp-icon.bp-icon--archive(href='http://tympanus.net/codrops/category/blueprints/' data-info='Blueprints archive')
+          span Go to the archive
+  button.action.action--open(aria-label='Open Menu')
+    span.icon.icon--menu
+  nav#ml-menu.menu
+    button.action.action--close(aria-label='Close Menu')
+      span.icon.icon--cross
+    .menu__wrap
+      ul.menu__level(data-menu='main')
+        li.menu__item
+          a.menu__link(data-submenu='submenu-1' href='#') Mini-leyendas
+        li.menu__item
+          a.menu__link(data-submenu='submenu-2' href='#') Campeones
+        li.menu__item
+          a.menu__link(data-submenu='submenu-3' href='#') Parche
+        li.menu__item
+          a.menu__link(data-submenu='submenu-4' href='#') Top Tier
+        li.menu__item
+          a.menu__link(data-submenu='submenu-4' href='#') Items
+        li.menu__item
+          a.menu__link(data-submenu='submenu-4' href='#') Tips
+        li.menu__item
+          a.menu__link(data-submenu='submenu-4' href='#') Acerca de...(FAQs)
+      // Submenu 1
+      ul.menu__level(data-menu='submenu-1')
+        li.menu__item
+          a.menu__link(href='#') Aliplata
+        li.menu__item
+          a.menu__link(href='#') Emplumadín
+        li.menu__item
+          a.menu__link(href='#') Fantasmín
+        li.menu__item
+          a.menu__link(href='#') Furicuerno
+        li.menu__item
+          a.menu__link(href='#') Runente
+        li.menu__item
+          a.menu__link(href='#') Topobrero
+        li.menu__item
+          a.menu__link(data-submenu='submenu-1-1' href='#') Sale %
+      // Submenu 1-1
+      ul.menu__level(data-menu='submenu-1-1')
+        li.menu__item
+          a.menu__link(href='#') Fair Trade Roots
+        li.menu__item
+          a.menu__link(href='#') Dried Veggies
+        li.menu__item
+          a.menu__link(href='#') Our Brand
+        li.menu__item
+          a.menu__link(href='#') Homemade
+      // Submenu 2
+      ul.menu__level(data-menu='submenu-2')
+        li.menu__item
+          a.menu__link(href='#') Todos los campeones
+        li.menu__item
+          a.menu__link(href='#') Asesino
+        li.menu__item
+          a.menu__link(href='#') Caballero
+        li.menu__item
+          a.menu__link(href='#') Cambiaformas
+        li.menu__item
+          a.menu__link(href='#') Cazador
+        li.menu__item
+          a.menu__link(href='#') Elementalistas
+        li.menu__item
+          a.menu__link(href='#') Espadachin
+        li.menu__item
+          a.menu__link(href='#') Hechiceros
+        li.menu__item
+          a.menu__link(href='#') Luchador
+        li.menu__item
+          a.menu__link(href='#') Pistolero
+        li.menu__item
+          a.menu__link(href='#') Protector
+      // Submenu 2-1
+      ul.menu__level(data-menu='submenu-2-1')
+        li.menu__item
+          a.menu__link(href='#') Exotic Mixes
+        li.menu__item
+          a.menu__link(href='#') Wild Pick
+        li.menu__item
+          a.menu__link(href='#') Vitamin Boosters
+      // Submenu 3
+      ul.menu__level(data-menu='submenu-3')
+        li.menu__item
+          a.menu__link(href='#') Buckwheat
+        li.menu__item
+          a.menu__link(href='#') Millet
+        li.menu__item
+          a.menu__link(href='#') Quinoa
+        li.menu__item
+          a.menu__link(href='#') Wild Rice
+        li.menu__item
+          a.menu__link(href='#') Durum Wheat
+        li.menu__item
+          a.menu__link(data-submenu='submenu-3-1' href='#') Promo Packs
+      // Submenu 3-1
+      ul.menu__level(data-menu='submenu-3-1')
+        li.menu__item
+          a.menu__link(href='#') Starter Kit
+        li.menu__item
+          a.menu__link(href='#') The Essential 8
+        li.menu__item
+          a.menu__link(href='#') Bolivian Secrets
+        li.menu__item
+          a.menu__link(href='#') Flour Packs
+      // Submenu 4
+      ul.menu__level(data-menu='submenu-4')
+        li.menu__item
+          a.menu__link(href='#') Grain Mylks
+        li.menu__item
+          a.menu__link(href='#') Seed Mylks
+        li.menu__item
+          a.menu__link(href='#') Nut Mylks
+        li.menu__item
+          a.menu__link(href='#') Nutri Drinks
+        li.menu__item
+          a.menu__link(data-submenu='submenu-4-1' href='#') Selection
+      // Submenu 4-1
+      ul.menu__level(data-menu='submenu-4-1')
+        li.menu__item
+          a.menu__link(href='#') Nut Mylk Packs
+        li.menu__item
+          a.menu__link(href='#') Amino Acid Heaven
+        li.menu__item
+          a.menu__link(href='#') Allergy Free
+  .content
+    p.info Por favor, Eliga una categoria
+    // Ajax loaded content here
+// /view
+script(src='javascripts/classie.js')
+script(src='javascripts/dummydata.js')
+script(src='javascripts/main.js')
+script.
+  (function() {
+  var menuEl = document.getElementById('ml-menu'),
+  mlmenu = new MLMenu(menuEl, {
+  // breadcrumbsCtrl : true, // show breadcrumbs
+  // initialBreadcrumb : 'all', // initial breadcrumb text
+  backCtrl : false, // show back button
+  // itemsDelayInterval : 60, // delay between each menu item sliding animation
+  onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+  });
+  // mobile menu toggle
+  var openMenuCtrl = document.querySelector('.action--open'),
+  closeMenuCtrl = document.querySelector('.action--close');
+  openMenuCtrl.addEventListener('click', openMenu);
+  closeMenuCtrl.addEventListener('click', closeMenu);
+  function openMenu() {
+  classie.add(menuEl, 'menu--open');
+  }
+  function closeMenu() {
+  classie.remove(menuEl, 'menu--open');
+  }
+  // simulate grid content loading
+  var gridWrapper = document.querySelector('.content');
+  function loadDummyData(ev, itemName) {
+  ev.preventDefault();
+  closeMenu();
+  gridWrapper.innerHTML = '';
+  classie.add(gridWrapper, 'content--loading');
+  setTimeout(function() {
+  classie.remove(gridWrapper, 'content--loading');
+  gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
+  }, 700);
+  }
+  })();
+// For the demo ad only
+script(src='//tympanus.net/codrops/adpacks/demoad.js')
 
-block content
-  .container
-      header.blog-header.py-3
-        .row.flex-nowrap.justify-content-between.align-items-center
-          .col-4.pt-1
-          .col-4.text-center
-            a.blog-header-logo.text-dark(href='#') Teamfight Tactics
-          .col-4.d-flex.justify-content-end.align-items-center
-            a.text-muted(href='#')
-          svg.mx-3(xmlns='http://www.w3.org/2000/svg', width='20', height='20', fill='none', stroke='currentColor', stroke-linecap='round', stroke-linejoin='round', stroke-width='2', role='img', viewbox='0 0 24 24', focusable='false')
-            title Search
-            circle(cx='10.5', cy='10.5', r='7.5')
-            path(d='M21 21l-5.2-5.2')
-  .nav-scroller.py-1.mb-2
-      nav.nav.d-flex.justify-content-between
-        a.p-2.text-muted(href='#') Campeones
-        a.p-2.text-muted(href='#') Mini Leyendas
-        a.p-2.text-muted(href='#') Parches
-        a.p-2.text-muted(href='#') Business
-        a.p-2.text-muted(href='#') Politics
-        a.p-2.text-muted(href='#') Opinion
-        a.p-2.text-muted(href='#') Science
-        a.p-2.text-muted(href='#') Health
-        a.p-2.text-muted(href='#') Style
-        a.p-2.text-muted(href='#') Travel
-  .jumbotron.p-4.p-md-5.text-white.rounded.bg-dark
-      .col-md-6.px-0
-        h1.display-4.font-italic Title of a longer featured blog post
-        p.lead.my-3
-        | Multiple lines of text that form the lede, informing new readers quickly and efficiently about what&rsquo;s most interesting in this post&rsquo;s contents.
-        p.lead.mb-0
-        a.text-white.font-weight-bold(href='#') Continue reading...
-  main.container(role='main')
-      .row
-        .col-md-8.blog-main
-          h3.pb-4.mb-4.font-italic.border-bottom
-            | From the Firehose
-          .blog-post
-            h2.blog-post-title Sample blog post
-            p.blog-post-meta
-              | January 1, 2014 by 
-              a(href='#') Mark
-            p
-              | This blog post shows a few different types of content that&rsquo;s supported and styled with Bootstrap. Basic typography, images, and code are all supported.
-            hr
-            p
-              | Cum sociis natoque penatibus et magnis 
-              a(href='#') dis parturient montes
-              | , nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-            blockquote
-              p
-                | Curabitur blandit tempus porttitor. 
-                strong Nullam quis risus eget urna mollis
-                |  ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
-            p
-              | Etiam porta 
-              em sem malesuada magna
-              |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-            h2 Heading
-            p
-              | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            h3 Sub-heading
-            p
-              | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            pre.
-          
-            p
-              | Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
-            h3 Sub-heading
-            p
-              | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            ul
-              li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              li Donec id elit non mi porta gravida at eget metus.
-              li Nulla vitae elit libero, a pharetra augue.
-            p
-              | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-            ol
-              li Vestibulum id ligula porta felis euismod semper.
-              li
-                | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-              li Maecenas sed diam eget risus varius blandit sit amet non magna.
-            p
-              | Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
-          // /.blog-post
-          .blog-post
-            h2.blog-post-title Another blog post
-            p.blog-post-meta
-              | December 23, 2013 by 
-              a(href='#') Jacob
-            p
-              | Cum sociis natoque penatibus et magnis 
-              a(href='#') dis parturient montes
-              | , nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-            blockquote
-              p
-                | Curabitur blandit tempus porttitor. 
-                strong Nullam quis risus eget urna mollis
-                |  ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
-            p
-              | Etiam porta 
-              em sem malesuada magna
-              |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-            p
-              | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          // /.blog-post
-          .blog-post
-            h2.blog-post-title New feature
-            p.blog-post-meta
-              | December 14, 2013 by 
-              a(href='#') Chris
-            p
-              | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            ul
-              li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              li Donec id elit non mi porta gravida at eget metus.
-              li Nulla vitae elit libero, a pharetra augue.
-            p
-              | Etiam porta 
-              em sem malesuada magna
-              |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-            p
-              | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-          // /.blog-post
-          nav.blog-pagination
-            a.btn.btn-outline-primary(href='#') Older
-            a.btn.btn-outline-secondary.disabled(href='#', tabindex='-1', aria-disabled='true') Newer
-        // /.blog-main
-        aside.col-md-4.blog-sidebar
-          .p-4.mb-3.bg-light.rounded
-            h4.font-italic About
-            p.mb-0
-              | Etiam porta 
-              em sem malesuada magna
-              |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-          .p-4
-            h4.font-italic Archives
-            ol.list-unstyled.mb-0
-              li
-                a(href='#') March 2014
-              li
-                a(href='#') February 2014
-              li
-                a(href='#') January 2014
-              li
-                a(href='#') December 2013
-              li
-                a(href='#') November 2013
-              li
-                a(href='#') October 2013
-              li
-                a(href='#') September 2013
-              li
-                a(href='#') August 2013
-              li
-                a(href='#') July 2013
-              li
-                a(href='#') June 2013
-              li
-                a(href='#') May 2013
-              li
-                a(href='#') April 2013
-          .p-4
-            h4.font-italic Elsewhere
-            ol.list-unstyled
-              li
-                a(href='#') GitHub
-              li
-                a(href='#') Twitter
-              li
-                a(href='#') Facebook
-        // /.blog-sidebar
-      // /.row
-  // /.container
-    footer.blog-footer
-      p
-        | Blog template built for 
-        a(href='https://getbootstrap.com/') Bootstrap
-        |  by 
-        a(href='https://twitter.com/mdo') @mdo
-        | .
-      p
-        a(href='#') Back to top
