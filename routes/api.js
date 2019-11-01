@@ -130,51 +130,43 @@ function router_init(db) {
 		});
 	});
 
-	router.get('/clean/personaje',function(req, res, next) {
+	router.post('/clean/personaje',function(req, res, next) {
 		vaciarPersonaje();
 
-		personaje_collection.find({}).toArray(function(err,docs) {
-			if (err){
-				return res.status(404).json({error:"Error"});
-			} 
-			else{
-				return res.status(200).json(docs);
-			}	
-			
-		});
+		res.render('bdlinks');
 	});
 
-	router.get('/clean/minileyenda',function(req, res, next) {
+	router.post('/clean/minileyenda',function(req, res, next) {
 		vaciarMinileyenda();
 
 		res.render('bdlinks');
 	});
 
-	router.get('/clean/costo',function(req, res, next) {
+	router.post('/clean/costo',function(req, res, next) {
 		vaciarCosto();
 
 		res.render('bdlinks');
 	});
 
-	router.get('/clean/clase',function(req, res, next) {
+	router.post('/clean/clase',function(req, res, next) {
 		vaciarClase();
 
 		res.render('bdlinks');
 	});
 
-	router.get('/clean/origen',function(req, res, next) {
+	router.post('/clean/origen',function(req, res, next) {
 		vaciarOrigen();
 
 		res.render('bdlinks');
 	});
 
-	router.get('/clean/objeto',function(req, res, next) {
+	router.post('/clean/objeto',function(req, res, next) {
 		vaciarObjeto();
 
 		res.render('bdlinks');
 	});
 
-	router.get('/clean/objetofinal',function(req, res, next) {
+	router.post('/clean/objetofinal',function(req, res, next) {
 		vaciarObjetofinal();
 
 		res.render('bdlinks');
@@ -184,6 +176,10 @@ function router_init(db) {
 		db.collection('personaje').drop(function(err, delOK) {
 			if (err) throw err;
 			if (delOK) console.log("Collection deleted (Personaje)");
+		});
+		db.createCollection('personaje', function(err, res) {
+			if (err) throw err;
+			console.log("Collection created! (Personaje)");
 		});
 	}
 
