@@ -15,7 +15,10 @@ head
   link(rel='stylesheet' type='text/css' href='stylesheets/demo.css')
   // menu styles
   link(rel='stylesheet' type='text/css' href='stylesheets/component.css')
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+  script(src="jquery-3.4.1.min.js")
   script(src='javascripts/modernizr-custom.js')
+  script(src='javascripts/champ.js')
   script(type='text/javascript').
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-7243260-2']);
@@ -37,6 +40,7 @@ head
         | Blueprint 
         span.bp-tooltip.bp-icon.bp-icon--about(data-content='The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration.')
       h1.bp-header__title IATI
+      div.datos Hola
       nav.bp-nav
         a.bp-nav__item.bp-icon.bp-icon--prev(href='http://tympanus.net/Blueprints/PageStackNavigation/' data-info='previous Blueprint')
           span Previous Blueprint

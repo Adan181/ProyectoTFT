@@ -22,7 +22,11 @@ function cargar_tabla(){
 	});
 }
 
-
+	$("img").hover(function(){
+	    $("div").css("background-color", "yellow");
+	    }, function(){
+	    $("div").css("background-color", "pink");
+	 });
 
 $("#boton").click(function(){
 	cargar_tabla();
