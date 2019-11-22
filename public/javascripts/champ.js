@@ -1,36 +1,26 @@
 $(document).ready(function(){
 
-function cargar_tabla(){
+function all_champ(){
+		var text = '<ul class = "products">'
 		$.ajax({
 		type:'get',
-		url:'/api/all',
+		url:'/api/all/personaje',
 		dataType:'json'})
 	    .done(function(data) {
 	    	console.log(data);
-	    	$("#tabla_datos").html('');
+	    	$(".content").html('');
 	    	$.each(data,function(i,v){
-	    		$("#tabla_datos").append(' <tr>'+
-                                         '<th scope="row">'+(parseInt(i)+1)+'</th>'+
-                                         '<td><input type ="text" id = "usuario'+i+'" value ="'+v.usuario+'"></td>'+
-                                         '<td><input type ="text" id = "correo'+i+'" value ="'+v.correo+'"></td>'+
-                                         '<td><input type ="text" id = "pass'+i+'" value ="'+v.pass+'"></td>'+
-                                         '<td><button class="btn btn-danger borrar_elemento" data-id="' +v._id+ '">Borrar</button></td>'+
-                                         '<td><button class="btn btn-info ver"  data-id="' +v._id+ '">Ver</button></td>'+
-                                         '<td><button class="btn btn-success actualizar" numcontrol ='+i+' data-id="' +v._id+ '">Actualizar</button></td>'+
-                                         '</tr>');
+	    		text = text + '<li class="champ-image"><img src="images/campeones/champimageid'+ (parseInt(i)+1) '"></li>';
 	    	});
+	    	$(".content").append(text);
+	    	console.log(text);
 	});
 }
-
-	$("img").hover(function(){
+	$(".champ-image").click(function(){
 	    $("div").css("background-color", "yellow");
 	    }, function(){
 	    $("div").css("background-color", "pink");
 	 });
-
-$("#boton").click(function(){
-	cargar_tabla();
-});
 
 $("#tabla_datos").on('click','.actualizar',function(){
 	//console.log($(this).attr('data-id'));

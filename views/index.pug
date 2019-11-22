@@ -99,27 +99,27 @@ head
       // Submenu 2
       ul.menu__level(data-menu='submenu-2')
         li.menu__item
-          a.menu__link(href='#') Todos los campeones
+          a.menu__link.championset(href='#') Todos los campeones
         li.menu__item
-          a.menu__link(href='#') Asesino
+          a.menu__link.championset(href='#') Asesino
         li.menu__item
-          a.menu__link(href='#') Caballero
+          a.menu__link.championset(href='#') Caballero
         li.menu__item
-          a.menu__link(href='#') Cambiaformas
+          a.menu__link.championset(href='#') Cambiaformas
         li.menu__item
-          a.menu__link(href='#') Cazador
+          a.menu__link.championset(href='#') Cazador
         li.menu__item
-          a.menu__link(href='#') Elementalistas
+          a.menu__link.championset(href='#') Elementalistas
         li.menu__item
-          a.menu__link(href='#') Espadachin
+          a.menu__link.championset(href='#') Espadachin
         li.menu__item
-          a.menu__link(href='#') Hechiceros
+          a.menu__link.championset(href='#') Hechiceros
         li.menu__item
-          a.menu__link(href='#') Luchador
+          a.menu__link.championset(href='#') Luchador
         li.menu__item
-          a.menu__link(href='#') Pistolero
+          a.menu__link.championset(href='#') Pistolero
         li.menu__item
-          a.menu__link(href='#') Protector
+          a.menu__link.championset(href='#') Protector
       // Submenu 2-1
       ul.menu__level(data-menu='submenu-2-1')
         li.menu__item
@@ -204,6 +204,9 @@ script.
   var gridWrapper = document.querySelector('.content');
   function loadDummyData(ev, itemName) {
   ev.preventDefault();
+  closeMenu();
+  gridWrapper.innerHTML = '';
+  classie.add(gridWrapper, 'content--loading');
   closeMenu();
   gridWrapper.innerHTML = '';
   classie.add(gridWrapper, 'content--loading');
