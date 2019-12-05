@@ -383,21 +383,23 @@ $('.enlace-mini.top').click(function(e){
       e.preventDefault();
       var objeto = new Object();
       objeto.id =$(this).attr('dataid');
-      var text
       console.log(objeto.id);
       $('.content p').html('');
+
       $.ajax(
 		{	type:"get",
 			url:'/api/detail/personaje?idP=' + objeto.id,
 			dataType: 'json'
 		}).done(function(data){
-	    		text ='<div id ="champ-container">'+
-	    		'<div id="champ-header">'+data.nombre+'</div>'+
+				console.log(data);
+	    		var text ='<div id ="champ-container">'+
+	    		'<div id="champ-header">'+data[0].nombre+'</div>'+
 	    		'<div id="champ-contenido">'+
 	    		'<div id="champ-section">Seletion</div>'+
 	    		'<div id="champ-aside"></div></div>';
+	    		$('.content p').html(text);
 		});
-	    	$('.content p').html(text);
+	    	
 
 	});
 });
