@@ -1,0 +1,171 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.btn-menu{
+	padding: 20px;
+	display: none;
+	background: #68615F;
+}
+
+.btn-menu .icono {
+	float: right;
+}
+
+.contenedor-menu{
+	margin: 0px;
+	min-width: 320px;
+	display: inline-block;
+}
+
+.contenedor-menu .menu-lista{
+	width: 100%;
+
+}
+
+.contenedor-menu ul {
+	list-style: none;
+}
+
+.contenedor-menu .menu-lista li a {
+	background: #544F4D;
+	display: block;
+	padding: 10px 14px;
+}
+
+.contenedor-menu .menu-lista li a:hover {
+	background: #3F3A39;
+}
+
+.contenedor-menu .menu-lista .icono.izq {
+	float: left;
+	margin-right: 8px;
+}
+
+.contenedor-menu .menu-lista .icono {
+	font-size: 12px;
+	line-height: 21px;
+}
+
+.contenedor-menu .menu-lista ul {
+	display: none;
+}
+
+.contenedor-menu .menu-lista ul li a {
+	background: #252322;
+	color: #fff;
+}
+
+.contenedor-menu .menu-lista .activado > a {
+	background: #351302;
+	color: #fff;
+}
+
+.info {
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 20vh 1em 0;
+	text-align: center;
+	color: #47484c;
+}
+
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.champ-image:hover .image {
+  opacity: 0.3;
+}
+
+.champ-image:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #3F3A39;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.tablaitem {
+	text-align: left;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.tablaitem th, td {
+	padding: 15px;
+}
+thead {
+	background-color: #544F4D;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: #2F3138;
+}
+
+tr:hover td {
+	background-color: #545866;
+	color: #fff;
+}
+li {
+	list-style: none;
+}
+
+#champ-container {
+	width: 1000px;
+	height: 650px;
+	padding: 0.5em;
+	margin: 0.5em auto;
+}
+#champ-header{
+	height: 20%;
+	background-color: #495465;
+	border-radius: 1em;
+	margin: 1em;
+}
+
+#champ-contenido{
+	height: 75%;
+	background-color: #495465;
+	border-radius: 1em;
+	margin: 1em;
+}
+
+#champ-section{
+	height: 90%;
+	width: 60%;
+	background-color:#2B3047;
+	border-radius: 1em;
+	float: left;
+	margin: 0.5em;
+}
+
+#champ-aside{
+	height: 90%;
+	width: 30%;
+	background-color:#2B3047;
+	border-radius: 1em;
+	float: right;
+	margin: 0.5em;
+}

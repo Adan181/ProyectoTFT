@@ -1,21 +1,6 @@
 $(document).ready(function(){
 
-function all_champ(){
-		var text = '<ul class = "products">'
-		$.ajax({
-		type:'get',
-		url:'/api/all/personaje',
-		dataType:'json'})
-	    .done(function(data) {
-	    	console.log(data);
-	    	$(".content").html('');
-	    	$.each(data,function(i,v){
-	    		text = text + '<li class="champ-image"><img src="images/campeones/champimageid'+ (parseInt(i)+1) '"></li>';
-	    	});
-	    	$(".content").append(text);
-	    	console.log(text);
-	});
-}
+
 	$(".champ-image").click(function(){
 	    $("div").css("background-color", "yellow");
 	    }, function(){

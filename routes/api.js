@@ -58,6 +58,33 @@ function router_init(db) {
 		});
 	});
 
+	router.get('/specific/personaje',function(req, res, next) {
+		var id_clase = parseInt(req.query.id_clase);
+		personaje_collection.find({$or:[{"idClase1" : id_clase},{"idClase2": id_clase}]}).toArray(function(err,docs) {
+			if (err){
+				return res.status(404).json({error:"Error"});
+			} 
+			else{
+				return res.status(200).json(docs);
+			}	
+			
+		});
+	});
+
+	router.get('/detail/personaje',function(req, res, next) {
+		var idP = parseInt(req.query.idP);
+		console.log(idP);
+		personaje_collection.find({"idPersonaje": idP}).toArray(function(err,docs) {
+			if (err){
+				return res.status(404).json({error:"Error"});
+			} 
+			else{
+				return res.status(200).json(docs);
+			}	
+			
+		});
+	});
+
 	router.get('/all/minileyenda',function(req, res, next) {
 		minileyenda_collection.find({}).toArray(function(err,docs) {
 			if (err){

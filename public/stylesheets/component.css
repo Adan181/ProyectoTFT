@@ -8,39 +8,13 @@
 	src: url('/fonts/feather/feather.eot?1gafuo#iefix') format('embedded-opentype'), url('/fonts/feather/feather.woff2?1gafuo') format('woff2'), url('/fonts/feather/feather.ttf?1gafuo') format('truetype'), url('/fonts/feather/feather.woff?1gafuo') format('woff'), url('/fonts/feather/feather.svg?1gafuo#feather') format('svg');
 }
 
-.icon {
-	font-family: 'feather';
-	font-weight: normal;
-	font-style: normal;
-	font-variant: normal;
-	line-height: 1;
-	text-transform: none;
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	speak: none;
-}
-
-.icon--arrow-left:before {
-	content: '\e901';
-}
-
-.icon--menu:before {
-	content: '\e903';
-}
-
-.icon--cross:before {
-	content: '\e117';
-}
-
-
 /* Menu styles */
 
 .menu {
 	position: fixed;
 	top: 120px;
 	left: 0;
-	width: 300px;
+	width: 320px;
 	height: calc(100vh - 120px);
 	background: #1c1d22;
 }
@@ -332,8 +306,3 @@
 		-webkit-transition: -webkit-transform 0.3s;
 		transition: transform 0.3s;
 	}
-	.menu--open {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
-}
