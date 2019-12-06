@@ -121,8 +121,34 @@ function router_init(db) {
 		});
 	});
 
+	router.get('/detail/clase',function(req, res, next) {
+		var idClase = parseInt(req.query.idClase);
+		clase_collection.find({"idClase": idClase}).toArray(function(err,docs) {
+			if (err){
+				return res.status(404).json({error:"Error"});
+			} 
+			else{
+				return res.status(200).json(docs);
+			}	
+			
+		});
+	});
+
 	router.get('/all/origen',function(req, res, next) {
 		origen_collection.find({}).toArray(function(err,docs) {
+			if (err){
+				return res.status(404).json({error:"Error"});
+			} 
+			else{
+				return res.status(200).json(docs);
+			}	
+			
+		});
+	});
+
+	router.get('/detail/origen',function(req, res, next) {
+		var idOrigen = parseInt(req.query.idOrigen);
+		origen_collection.find({"idOrigen": idOrigen}).toArray(function(err,docs) {
 			if (err){
 				return res.status(404).json({error:"Error"});
 			} 

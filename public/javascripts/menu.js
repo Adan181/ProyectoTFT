@@ -330,10 +330,14 @@ $('.enlace-mini.top').click(function(e){
 	    		"<td><img src='/images/items/item_id"+v.idObjeto+".png'</td>"+
 	    		"<td>"+v.nombre+"</td>"+
 	    		"<td>"+item[v.idObjeto1]+"</td>"+
-	    		"<td>"+item[v.idObjeto2]+"</td>"+
-	    		"<td>"+stats[v.idStat1]+": "+ v.stat1 +"</td>"+
-	    		"<td>"+stats[v.idStat2]+": "+ v.stat2 +"</td>"+
-	    		"<td>"+v.descripcion+"</td>"+
+	    		"<td>"+item[v.idObjeto2]+"</td>";
+	    		if (v.idStat1 != 0){
+	    			text = text + "<td>"+stats[v.idStat1]+": "+ v.stat1 +"</td>";
+	    		}else {text = text + '<td></td>'}
+	    		if (v.idStat2 != 0){
+	    			text = text + "<td>"+stats[v.idStat2]+": "+ v.stat2 +"</td>";
+	    		}else {text = text + '<td></td>'}
+	    		text = text + "<td>"+v.descripcion+"</td>"+
 	    		"</tr>";
 	    	});
 	    	text = text + '</table>';
@@ -344,7 +348,7 @@ $('.enlace-mini.top').click(function(e){
 		e.preventDefault();
 		$('.content p').html('');
 		$('.content p').removeClass('info');
-	    	var text = '<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">9.21</span></p><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Clasificatorias</span></p>' +
+	    	var text = '<div id = "parche"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">9.21</span></p><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Clasificatorias</span></p>' +
 '<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Este es el último parche para continuar subiendo en la escala clasificada en la primera temporada de TeamFight Tactics. La clasificación estará desactivada en el parche 9.22 para el inicio de Rise of the Elements para asegurarse de que tengamos errores importantes o problemas de equilibrio, pero volverá en el parche 9.23</span></p>'+
 '<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Daño del jugador</span></p><ul style="margin-top:0;margin-bottom:0;"><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">1 estrella por nivel 1/1/2/2/3 ⇒ 1/1/1/2/3</span></p>'+
 '</li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">2 estrellas por nivel: 2/2/3/4/5 ⇒ 2/2/2/3/4</span></p></li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">'+
@@ -369,15 +373,16 @@ $('.enlace-mini.top').click(function(e){
 '<ul style="margin-top:0;margin-bottom:0;"><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp; &nbsp; Duración del aturdimiento: 5 segundos ⇒ 4 segundos</span></p></li></ul><p><br></p><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Bugfixin</span></p><ul style="margin-top:0;margin-bottom:0;"><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">'+
 '<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">La información sobre herramientas con hechizos de Kai’Sa ahora se escala correctamente con Poder de habilidad</span></p></li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Las monedas no se lanzan tan lejos</span></p></li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">'+
 '<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ajustes en algunas cosas de los Guantes de ladrón</span></p></li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"><p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Draven ahora tiene la relación de velocidad de ataque prevista</span></p></li><li dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">'+
-'<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Los jugadores ya no recibirán ocasionalmente cantidades masivas inexplicables de daño durante los segundos extras.</span></p></li></ul>';
+'<p dir="ltr" style="line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#fff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Los jugadores ya no recibirán ocasionalmente cantidades masivas inexplicables de daño durante los segundos extras.</span></p></li></ul></div>';
 	    	$(".container p").html(text);
 	});
 	
 		$('.enlace-misc.faq').click(function(e){
 		e.preventDefault();
 		$('.content p').html('');
-		$('.content p').addClass('info');
-		$('.content p').html('Nuestra empresa se especializa en la realización de páginas web, siendo una empresa mediana mente pequeña y con poca experiencia en el mundo laboral, contamos con los conocimientos y la vanguardia de contar con los mejores temas para el cliente y su comodidad. <br> Este proyecto en especial lo que buscamos es la creación del proyecto de una página web del juego Teamfight tactics, orientado especialmente a la comunidad hispana hablante. Buscamos una interacción constante con los usuarios, ya que nuestra empresa una de sus mayores oferta que le hacemos a los clientes es la retroalimentación que ellos nos podrían dar, con el fin de mejorar e innovar la página para el gusto de nuestros usuarios. <br> Hoy en día un de los mayores problemas que cuentas páginas web de diversos videojuegos es que casi nunca escuchan las opiniones de sus usuarios o simplemente no existe ninguna página deTeamfight tactics en español. <br> Nosotros damos solución a sus problemas en esta página, puesto que es un punto que hay mucho potencial y hay un crecimiento notorio.')
+		$('.content p').removeClass('info');
+		$('.content p').html('<p class ="about">Nuestra empresa se especializa en la realización de páginas web, siendo una empresa mediana mente pequeña y con poca experiencia en el mundo laboral, contamos con los conocimientos y la vanguardia de contar con los mejores temas para el cliente y su comodidad. <br> Este proyecto en especial lo que buscamos es la creación del proyecto de una página web del juego Teamfight tactics, orientado especialmente a la comunidad hispana hablante. Buscamos una interacción constante con los usuarios, ya que nuestra empresa una de sus mayores oferta que le hacemos a los clientes es la retroalimentación que ellos nos podrían dar, con el fin de mejorar e innovar la página para el gusto de nuestros usuarios. <br> Hoy en día un de los mayores problemas que cuentas páginas web de diversos videojuegos es que casi nunca escuchan las opiniones de sus usuarios o simplemente no existe ninguna página deTeamfight tactics en español.' +
+		 '<br> Nosotros damos solución a sus problemas en esta página, puesto que es un punto que hay mucho potencial y hay un crecimiento notorio.<br><img class="iati" src="/images/iati.jpg" width = "576px" height ="432px"></p>');
 		});
 	$(document).on('click', '.champ-image .image', function(e) {
       e.preventDefault();
@@ -386,20 +391,32 @@ $('.enlace-mini.top').click(function(e){
       console.log(objeto.id);
       $('.content p').html('');
 
+
+
       $.ajax(
 		{	type:"get",
 			url:'/api/detail/personaje?idP=' + objeto.id,
 			dataType: 'json'
 		}).done(function(data){
-				console.log(data);
-	    		var text ='<div id ="champ-container">'+
-	    		'<div id="champ-header">'+data[0].nombre+'</div>'+
+	    		var text ='<div id ="champ-container" idc1 = "'+data[0].idClase1+'"><p class = "champname"><img width="120px" height="120px" class ="detail_image" src = "images/campeones/champimageid'+data[0].idPersonaje+'.jpg"><br>'+data[0].nombre+'</p>'+
+	    		'<div id="champ-header"><table><tr><td = text-aling = "center"><img width ="64px" height ="64px" src ="/images/habilidad/h_champ_id'+data[0].idPersonaje+'.png"></td><td>'+data[0].habilidad+'</td>';
+	    		if (data[0].manaMax != 0){text = text + '<p class ="mana">'+data[0].manaInicial+'/'+data[0].manaMax+'<i class="drop fas fa-tint"></i></p>';}
+	    		text = text +'</tr></table></div>'+
 	    		'<div id="champ-contenido">'+
-	    		'<div id="champ-section">Seletion</div>'+
-	    		'<div id="champ-aside"></div></div>';
+	    		'<div id="champ-section"><table id= "table_datos"></table></div>'+
+	    		'<div id="champ-aside"><div class = "stat-list"><ul>'+
+	    		'<li>Costo: <img width ="15px" height = "15px" src = "/images/oro.svg"> '+data[0].idCosto+'</li>'+
+	    		'<li>Armadura: '+data[0].armadura+'</li>'+
+	    		'<li>Resistencia mágica: '+data[0].resistenciaMagica+'</li>'+
+	    		'<li>Daño: '+data[0]["dano 1"]+'/'+data[0]["dano 2"]+'/'+data[0]["dano 3"]+'</li>'+
+	    		'<li>Velocidad de ataque: '+data[0].velocidadAtaque+'</li>'+
+	    		'<li>Dps: '+data[0].dps1+'/'+data[0].dps2+'/'+data[0].dps3+'</li>'+
+	    		'<li>Rango: '+data[0].rango+'</li>'+
+	    		'<li>Vida: '+data[0]["vida 1"]+'/'+data[0]["vida 2"]+'/'+data[0]["vida 3"]+'</li>'+
+	    		'<li>Probabilidad de crítico: 25%</li>'+
+	    		'</ul></div></div></div>';
 	    		$('.content p').html(text);
+	    		cargarclase(data.idClase1);
 		});
-	    	
-
 	});
 });

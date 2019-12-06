@@ -115,20 +115,22 @@
 .tablaitem th, td {
 	padding: 15px;
 }
-thead {
+
+
+.tablaitem thead {
 	background-color: #544F4D;
 	color: white;
 }
 
-tr:nth-child(even){
+.tablaitem tr:nth-child(even){
 	background-color: #2F3138;
 }
 
-tr:hover td {
+.tablaitem tr:hover td {
 	background-color: #545866;
 	color: #fff;
 }
-li {
+.tablaitem li {
 	list-style: none;
 }
 
@@ -139,23 +141,25 @@ li {
 	margin: 0.5em auto;
 }
 #champ-header{
-	height: 20%;
-	background-color: #495465;
+	height: 15%;
+	background-color: #282D33;
+	border-top: 30px;
 	border-radius: 1em;
 	margin: 1em;
+	margin-top: 50px;
 }
 
 #champ-contenido{
-	height: 75%;
-	background-color: #495465;
+	height: 80%;
+	background-color: #282D33;
 	border-radius: 1em;
 	margin: 1em;
 }
 
 #champ-section{
 	height: 90%;
-	width: 60%;
-	background-color:#2B3047;
+	width: 69%;
+	background-color:#363D45;
 	border-radius: 1em;
 	float: left;
 	margin: 0.5em;
@@ -163,9 +167,67 @@ li {
 
 #champ-aside{
 	height: 90%;
-	width: 30%;
-	background-color:#2B3047;
+	width: 27%;
+	background-color:#363D45;
+	display: block;
 	border-radius: 1em;
 	float: right;
 	margin: 0.5em;
+}
+
+#parche {
+	margin: 10px;
+	padding: 10px;
+}
+
+.about {
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 5vh 1em 0;
+	text-align: justify;
+	color: #fff;
+}
+
+.iati {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 250px;
+}
+
+.champname{
+	font-size: 30px;
+	text-align: center;
+	height: 140px;
+	color: #fff;
+}
+
+.detail_image{
+	border-radius: 2.8em;
+}
+
+.habilidad{
+	padding: 5px;
+}
+
+.mana{
+	padding-top: 2px;
+	height: 20px;
+	width: 100px;
+	float: right;
+}
+.drop{
+	color: #377AC6;
+}
+
+.stat-list{
+	padding: 10px;
+	margin: 10px;
+}
+
+.stat-list ul {
+	list-style: none;
+}
+
+.stat-list ul li {
+	padding: 5px;
 }
